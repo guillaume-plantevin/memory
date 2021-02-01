@@ -8,7 +8,16 @@
     
     // récupère le jeu de cartes mélangé
     // DEBUG
-    vdp($_SESSION['shuffledDesk']);
+    prp($_SESSION);
+
+    // retour de l'objet $game = new Memory()
+    $game = unserialize($_SESSION['game']);
+
+    // DEBUG
+    // vdp($game);
+
+    // DEBUG
+    // vdp($_SESSION['shuffledDeck']);
 ?>
 
 
@@ -30,6 +39,8 @@
                 <li><a href="deconnexion.php">Deconnexion</a></li>
             </ul>
         </header>
-        
+        <?php
+            $game->buildDeck($_SESSION['shuffledDeck']);
+        ?>
     </body>
 </html>

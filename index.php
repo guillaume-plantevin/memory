@@ -10,7 +10,11 @@
         $game = new Memory;
         $game->setDifficulty($_GET['difficulty']);
         $game->createDesk();
-        $_SESSION['shuffledDesk'] = $game->shuffleDesk();
+
+        // indispensable????
+        $_SESSION['game'] = serialize($game);
+
+        $_SESSION['shuffledDeck'] = $game->shuffleDeck();
         header('Location: playing.php');
         return;
     }

@@ -9,6 +9,8 @@ class Memory {
         $this->difficulty = $difficulty;
         echo 'difficulty = ' . $this->difficulty;
     }
+
+
     public function createDesk(): array {
         $desk = [];
         $numbCards = $this->difficulty * 2;
@@ -21,9 +23,29 @@ class Memory {
         prp($desk);
         return $desk;
     }
-    public function shuffleDesk():array {
+
+
+    public function shuffleDeck():array {
         shuffle($this->desk);
         return $this->desk;
+    }
 
+
+    public function showDifficulty() {
+        return $this->difficulty;
+    }
+    public function createCard($index, $value) {
+        echo '<div class="card">';
+        echo '<a href="playing.php?id=' . $index . '&value=' . $value . '">';
+        echo '<p>id=' . $index . '</p>' ;
+        echo '<p>value=' . $value . '</p>';
+        echo '</a>';
+        echo '</div>', "\n";
+    }
+
+    public function buildDeck($arrayValues) {
+        foreach ($arrayValues  as $k => $v) {
+            $this->createCard($k, $v);
+        }
     }
 }
