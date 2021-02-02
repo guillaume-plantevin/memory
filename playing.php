@@ -39,7 +39,8 @@
                 <li><a href="deconnexion.php">Deconnexion</a></li>
             </ul>
         </header>
-        <article class="game">
+        <!-- PEUT-ETRE CHANGER LES CLASS -->
+        <article class="game flex d-flex justify-content-around">
         <?php
             $game->buildDeck($_SESSION['shuffledDeck']);
         ?>

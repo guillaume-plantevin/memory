@@ -15,13 +15,11 @@
         // indispensable????
         $_SESSION['game'] = serialize($game);
 
-        vdp($_SESSION);
+        // DEBUG
+        // vdp($_SESSION);
+        // vdp($game, '$game: ');
 
-        vdp($game, '$game: ');
-        
-        die;
-
-        // header('Location: playing.php');
+        header('Location: playing.php');
         return;
     }
 ?>

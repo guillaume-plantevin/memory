@@ -16,26 +16,19 @@ class Memory {
 
 
     public function createDeck(): array {
-        // $deck = [];
         $numbCards = $this->difficulty * 2;
-        // echo $numbCards;
-        // die;
         for ($i = 0; $i <= $numbCards - 1; ++$i) {
             $this->deck[$i] = $this->pairs[$i];
         }
-        // $this->deck = $deck;
-        prp($this->deck);
-        prp($this->shuffledDeck);
+        // prp($this->deck);
+        // prp($this->shuffledDeck);
         return $this->deck;
     }
 
 
-    public function shuffleDeck() {
+    public function shuffleDeck():array {
         $this->shuffledDeck = $this->deck;
-
         shuffle($this->shuffledDeck);
-
-        // $shuffledDeck = $this->shuffledDeck;
         return $this->shuffledDeck;
     }
 
