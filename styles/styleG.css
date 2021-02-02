@@ -1,0 +1,10 @@
+.game {
+    display: flex;
+
+}
+.card {
+    margin: 2em;
+    border: 2px solid black;
+    width: 150px;
+    height: 200px
+}

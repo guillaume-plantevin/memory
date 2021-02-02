@@ -9,18 +9,29 @@
     if (isset($_GET['difficulty'])) {
         $game = new Memory;
         $game->setDifficulty($_GET['difficulty']);
-        $game->createDesk();
-        $_SESSION['shuffledDesk'] = $game->shuffleDesk();
+        $game->createDeck();
+        $_SESSION['shuffledDeck'] = $game->shuffleDeck();
+
+        // indispensable????
+        $_SESSION['game'] = serialize($game);
+        // VARIATION
+        // $_SESSION['game'] = $game;
+
+        // DEBUG
+        // vdp($_SESSION);
+        // vdp($game, '$game: ');
+
         header('Location: playing.php');
         return;
     }
-    // vdp($_SESSION);
 ?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        <link rel="stylesheet" href="styles/styleG.css">
         <title>index</title>
     </head>
     <body>
@@ -34,7 +45,6 @@
         <form action="" method='get'>
             <label for="diff">nombre de paires</label>
             <select name="difficulty" id="diff">
-                <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
