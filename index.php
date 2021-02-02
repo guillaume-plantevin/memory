@@ -9,16 +9,21 @@
     if (isset($_GET['difficulty'])) {
         $game = new Memory;
         $game->setDifficulty($_GET['difficulty']);
-        $game->createDesk();
+        $game->createDeck();
+        $_SESSION['shuffledDeck'] = $game->shuffleDeck();
 
         // indispensable????
         $_SESSION['game'] = serialize($game);
 
-        $_SESSION['shuffledDeck'] = $game->shuffleDeck();
-        header('Location: playing.php');
+        vdp($_SESSION);
+
+        vdp($game, '$game: ');
+        
+        die;
+
+        // header('Location: playing.php');
         return;
     }
-    // vdp($_SESSION);
 ?>
 <!DOCTYPE html>
 <html lang="en">

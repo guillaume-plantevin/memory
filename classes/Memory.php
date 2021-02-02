@@ -1,33 +1,42 @@
 <?php
     require_once '../functions/functions.php';
 class Memory {
+    // ARRAYS
     private $pairs = ['A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E', 'E', 'F', 'F', 'G', 'G'];
+    private $deck = [];
+    private $shuffledDeck = [];
+    // INT
     private $difficulty;
-    private $desk;
+
 
     public function setDifficulty(int $difficulty) {
         $this->difficulty = $difficulty;
-        echo 'difficulty = ' . $this->difficulty;
+        // echo 'difficulty = ' . $this->difficulty;
     }
 
 
-    public function createDesk(): array {
-        $desk = [];
+    public function createDeck(): array {
+        // $deck = [];
         $numbCards = $this->difficulty * 2;
         // echo $numbCards;
         // die;
         for ($i = 0; $i <= $numbCards - 1; ++$i) {
-            $desk[$i] = $this->pairs[$i];
+            $this->deck[$i] = $this->pairs[$i];
         }
-        $this->desk = $desk;
-        prp($desk);
-        return $desk;
+        // $this->deck = $deck;
+        prp($this->deck);
+        prp($this->shuffledDeck);
+        return $this->deck;
     }
 
 
-    public function shuffleDeck():array {
-        shuffle($this->desk);
-        return $this->desk;
+    public function shuffleDeck() {
+        $this->shuffledDeck = $this->deck;
+
+        shuffle($this->shuffledDeck);
+
+        // $shuffledDeck = $this->shuffledDeck;
+        return $this->shuffledDeck;
     }
 
 

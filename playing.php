@@ -39,8 +39,10 @@
                 <li><a href="deconnexion.php">Deconnexion</a></li>
             </ul>
         </header>
+        <article class="game">
         <?php
             $game->buildDeck($_SESSION['shuffledDeck']);
         ?>
+        </article>
     </body>
 </html>
