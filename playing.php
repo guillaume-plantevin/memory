@@ -1,4 +1,11 @@
 <?php
+    /**
+     * ATTENTION: GROS PROBLEME:
+     * Lorsque l'utilisateur rafraichit la page, les deux tours sont effacés de la prop
+     * de la class Memory!
+     */
+
+     
     require_once 'classes/Autoloader.php';
     session_start();
 
@@ -7,23 +14,8 @@
     Autoloader::register();
     
     // retour de l'objet $game = new Memory()
-    
-    // if (isset($_SESSION['game'])) {
-    //     if (is_string($_SESSION['game'])) {
-    //         $game = unserialize($_SESSION['game']);
-            // unset($_SESSION['game']);
-        // }
-        // else {
-        //     $game = $_SESSION['game'];
-        // }
-        // unset($_SESSION['game']);
-        // $_SESSION['game'] = $game;
-
-    // }
     $game = unserialize($_SESSION['game']);
 
-
-    // récupère le jeu de cartes mélangé
     // DEBUG
     prp($game, '$game');
     // prp($_SESSION, '$_SESSION');
@@ -35,24 +27,21 @@
 
     if (isset($_GET['id']) && !$game->pTurnExists()) {
         $game->setPreviousTurn($_GET['id']);
-        echo 'reçu une première ID: ', $game->showActualId();
+        // echo 'reçu une première ID: ', $game->showActualId();
         $_SESSION['game'] = serialize($game);
         header("Location: playing.php");
         return;
     }
     elseif (isset($_GET['id']) && $game->pTurnExists()) {
         $game->setPreviousTurn($_GET['id']);
-        echo 'previous id: ', $game->showPreviousID(), '<br>';
-        echo 'actual id: ', $game->showActualId(), '<br>';
+        // echo 'previous id: ', $game->showPreviousID(), '<br>';
+        // echo 'actual id: ', $game->showActualId(), '<br>';
         $_SESSION['game'] = serialize($game);
         header("Location: playing.php");
         return;
     }
     if ($game->pTurnExists() && $game->aTurnExists()) {
-        echo 'OK COMPUTER';
         $game->comparison();
-        // unset($game->previousTurn);
-        // unset($game->actualTurn);
     }
 ?>
 

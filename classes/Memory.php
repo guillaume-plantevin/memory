@@ -127,4 +127,27 @@ class Memory extends Cards{
     public function showActualId() {
         return $this->actualTurn;
     }
+
+    /**
+     * efface les valeur pour les deux propriétés: previousTurn & actualTurn
+     * 
+     */
+    private function unsetTurns() {
+        unset($this->actualTurn);
+        unset($this->previousTurn);
+    }
+    /**
+     * comparaison entre deux cartes/propriétés, 
+     */
+    public function comparison() {
+        // echo $this->shuffledDeck[$this->previousTurn], '<br>';
+        // echo $this->shuffledDeck[$this->actualTurn], '<br>';
+        if ($this->shuffledDeck[$this->previousTurn] ===  $this->shuffledDeck[$this->actualTurn]) {
+            echo 'MEME VALEUR';
+        }
+        else {
+            echo "VALEURS DIFFERENTES";
+        }
+        $this->unsetTurns();
+    }
 }
