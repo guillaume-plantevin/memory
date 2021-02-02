@@ -1,23 +1,59 @@
 <?php
+    require_once 'classes/Autoloader.php';
     session_start();
 
     require_once 'functions/functions.php';
-    require_once 'classes/Autoloader.php';
 
     Autoloader::register();
     
-    // récupère le jeu de cartes mélangé
-    // DEBUG
-    prp($_SESSION);
-
     // retour de l'objet $game = new Memory()
+    
+    // if (isset($_SESSION['game'])) {
+    //     if (is_string($_SESSION['game'])) {
+    //         $game = unserialize($_SESSION['game']);
+            // unset($_SESSION['game']);
+        // }
+        // else {
+        //     $game = $_SESSION['game'];
+        // }
+        // unset($_SESSION['game']);
+        // $_SESSION['game'] = $game;
+
+    // }
     $game = unserialize($_SESSION['game']);
 
-    // DEBUG
-    // vdp($game);
 
+    // récupère le jeu de cartes mélangé
     // DEBUG
+    prp($game, '$game');
+    // prp($_SESSION, '$_SESSION');
+    
+    // DEBUG
+    // vdp($game, '$game');
     // vdp($_SESSION['shuffledDeck']);
+    // vdp($game->pTurnExists(), '$game->pTurnExists()');
+
+    if (isset($_GET['id']) && !$game->pTurnExists()) {
+        $game->setPreviousTurn($_GET['id']);
+        echo 'reçu une première ID: ', $game->showActualId();
+        $_SESSION['game'] = serialize($game);
+        header("Location: playing.php");
+        return;
+    }
+    elseif (isset($_GET['id']) && $game->pTurnExists()) {
+        $game->setPreviousTurn($_GET['id']);
+        echo 'previous id: ', $game->showPreviousID(), '<br>';
+        echo 'actual id: ', $game->showActualId(), '<br>';
+        $_SESSION['game'] = serialize($game);
+        header("Location: playing.php");
+        return;
+    }
+    if ($game->pTurnExists() && $game->aTurnExists()) {
+        echo 'OK COMPUTER';
+        $game->comparison();
+        // unset($game->previousTurn);
+        // unset($game->actualTurn);
+    }
 ?>
 
 
@@ -47,3 +83,7 @@
         </article>
     </body>
 </html>
+
+<?php 
+    $_SESSION['game'] = serialize($game);
+?>
