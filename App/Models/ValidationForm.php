@@ -4,7 +4,7 @@ namespace App\Model\ValidationForm;
 
 use App\Model\Database;
 
-class Validator extends Database
+class ValidationForm extends Database
 {
     private $data;
     protected $errors = [];
@@ -46,7 +46,7 @@ class Validator extends Database
      * @param  int    $length La taille
      * @return bool           Bon ou Pas
      */
-    public function minLength(string $field, int $length): bool {
+    public function minLength(string $login, string $password, string $confirm_password, int $length): bool {
         if (strlen($field) < $length){
             $this->errors[$field] = "Le champ doit avoir plus de $length caractères";
             return false;
@@ -54,49 +54,30 @@ class Validator extends Database
         return true;
     }
 
-    // public function date (string $field): bool {
-    //     if (DateTime::createFromFormat('Y-m-d', $this->data[$field]) === false) {
-    //         $this->errors[$field] = "La date ne semble pas valide";
-    //         return false;
-    //     }
-    //     return true;
-    // }
 
-  //   public function time (string $field): bool {
-  //       if (DateTime::createFromFormat('H:i', $this->data[$field]) === false) {
-  //           $this->errors[$field] = "La temps ne semble pas valide";
-  //           return false;
-  //       }
-  //       return true;
-  //   }
-  //
-  //   public function beforeTime(string $startField, string $endField){
-  //       if ($this->time($startField) && $this->time($endField)){
-  //           $start = DateTime::createFromFormat('H:i', $this->data[$startField]);
-  //           $end = DateTime::createFromFormat('H:i', $this->data[$endField]);
-  //
-  //           if ($start->getTimestamp() > $end->getTimestamp()){
-  //               $this->errors[$startField] = "Le temps doit de début ne peux pas être supèrieur au temps de fin";
-  //               return false;
-  //           }
-  //           elseif ($start->format('H') < 8 || $end->format('H') > 18) {
-  //             $this->errors[$startField] = "On ne peut réserver que entre 8h00 et 18h00";
-  //             return false;
-  //           }
-  //           return true;
-  //       }
-  //       return false;
-  //   }
-  //
-  //
-  //
-  //
-  // public function Week_End(string $field): bool{
-  //   $date = date('N', strtotime($this->data[$field]));
-  //   if ($date == '7' || $date == '6') {
-  //     $this->errors[$field] = "On ne peut pas reserver pendant les Week-Ends";
-  //     return false;
-  //   }
-  //   return true;
-  // }
+
+    /**
+     * Savoir si les deux Password Correspondent
+     * @param  string $password         Password
+     * @param  string $confirm_password Confirmation Password
+     * @return bool                     YES OR NO (True or False)
+     */
+    public function ConfirmPassword(string $password, string $confirm_password): bool{
+      if (condition) {
+        // code...
+      }
+    }
+
+
+    /**
+     * Permet de savoir si il existe déja le même Login dans la BDD
+     * @param string $login Login de l'User
+     */
+    public function Loginexist(string $login){
+      if (condition) {
+        // code...
+      }
+    }
+
+    
 }
