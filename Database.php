@@ -9,7 +9,7 @@ class Database{
   private $db_user;
   private $db_pass;
   private $db_host;
-  private $pdo;
+  protected $pdo;
 
 
   /**
@@ -26,10 +26,9 @@ class Database{
     $this->db_host = $db_host;
   }
 
-  /**
-   * [getPDO description]
-   * @return bool Connexion à la bdd
-   */
+    /**
+     * @return PDO
+     */
   private function getPDO(){
     if ($this->pdo === null) {
       $pdo = new PDO('mysql:host=localhost;dbname=memory', 'root', '');
@@ -39,17 +38,6 @@ class Database{
     return $this->pdo;
   }
 
-  // public function query($statement, $class_name, $one = false){
-  //   $req = $this->getPDO()->query($statement);
-  //   $req->setFetchMode(PDO::FETCH_CLASS, $class_name);
-  //   if ($one) {
-  //     $datas = $req->fetch();
-  //   }else {
-  //     $datas = $req->fetchAll();
-  //   }
-  //   return $datas;
-  //
-  // }
 
 
 
@@ -66,6 +54,25 @@ class Database{
     $req->execute($attributes);
     $req->setFetchMode(PDO::FETCH_CLASS, $class_name);
 
+    if ($one) {
+      $datas = $req->fetch();
+    }else {
+      $datas = $req->fetchAll();
+    }
+    return $datas;
+
+  }
+
+  /**
+   * [query description]
+   * @param  [type]  $statement  [description]
+   * @param  [type]  $class_name [description]
+   * @param  boolean $one        [description]
+   * @return [type]              [description]
+   */
+  public function query($statement, $class_name, $one = false){
+    $req = $this->getPDO()->query($statement);
+    $req->setFetchMode(PDO::FETCH_CLASS, $class_name);
     if ($one) {
       $datas = $req->fetch();
     }else {
