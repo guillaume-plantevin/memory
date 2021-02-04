@@ -3,9 +3,7 @@
      * ATTENTION: GROS PROBLEME:
      * Lorsque l'utilisateur rafraichit la page, les deux tours sont effacés de la prop
      * de la class Memory!
-     */
-
-     
+     */ 
     require_once 'classes/Autoloader.php';
     session_start();
 

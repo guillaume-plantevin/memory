@@ -2,8 +2,8 @@
     session_start();
 
     require_once 'functions/functions.php';
-
     require_once 'classes/Autoloader.php';
+    
     Autoloader::register();
 
     if (isset($_GET['difficulty'])) {

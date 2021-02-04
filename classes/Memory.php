@@ -129,7 +129,7 @@ class Memory extends Cards{
     }
 
     /**
-     * efface les valeur pour les deux propriétés: previousTurn & actualTurn
+     * efface les valeurs pour les deux propriétés: previousTurn & actualTurn
      * 
      */
     private function unsetTurns() {
