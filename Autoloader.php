@@ -1,6 +1,5 @@
 <?php
 namespace App;
-
 class Autoloader{
     static function register() {
 
@@ -21,7 +20,7 @@ class Autoloader{
 
         $fichier = __DIR__ . '/' . $class . '.php';
         //On verifie si le fichier exist
-        if (file_exist($fichier)) {
+        if (file_exists($fichier)) {
             require_once $fichier;
         }
     }

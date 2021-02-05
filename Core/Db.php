@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Core;
 
 // On "importe" PDO
@@ -44,3 +43,4 @@ class Db extends PDO
         return self::$instance;
     }
 }
+?>
