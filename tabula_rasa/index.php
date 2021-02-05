@@ -8,7 +8,7 @@
 
     if (isset($_REQUEST['difficulty'])) {
         $_SESSION['difficulty'] = $_REQUEST['difficulty'];
-        $game = new Memory;
+        $game = new Memory(0, 1);
         $game->setDifficulty($_REQUEST['difficulty']);
         $game->createDeck();
         $game->shuffleDeck();

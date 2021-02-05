@@ -6,12 +6,11 @@
     
     Autoloader::register();
     
-    // $value = 'ABCDEFGHIJKLMNOPQRST';
     $game = unserialize($_SESSION['game']);
 
     if (isset($_POST['cardId'])) {
         if (!$game->pTurnExists()) {
-            $game->setPreviousTurn($_POST['id']);
+            $game->setPreviousTurn($_POST['cardId']);
         }
         elseif ($game->pTurnExists()) {
 
@@ -22,23 +21,19 @@
     } 
 
     if (isset($_SESSION['difficulty'])) {
-        $cardDeck = [];
-        $numberOfCard = intval($game->getDifficulty());
+        // $game->printDeck();
+        // $cardDeck = [];
+        // $numberOfCard = intval($game->getDifficulty());
         // echo 'number of cards = ' . $numberOfCard;
-        for ($i = 0; $i < $numberOfCard; ++$i) {
-            $cardDeck[$i] = new Cards($i, $value[$i]);
-        }
+        // for ($i = 0; $i < $numberOfCard; ++$i) {
+        //     $cardDeck[$i] = new Cards($i, $game->getValue($i);
+        // }
     }
     if (isset($_REQUEST['cardId'])) {
         $cardId = intval($_REQUEST['cardId']);
-        $cardDeck[$cardId]->flipCard();
+        $game->flipCard($cardId);
+        // $cardDeck[$cardId]->flipCard();
     }
-    // $game = new Memory;
-    // echo $game->getidCard();
-
-    // $card = new Cards(0, 'A');
-    // prp($cardDeck, '$card');
-    // vdp($cardDeck, '$card');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -59,24 +54,18 @@
         </ul>
     </header>
     <article class="game flex d-flex justify-content-around">
-    <?php
-        // $card->printCard();
-        foreach ($cardDeck as $k => $v) {
-            // vdp($v);
-            $cardDeck[$k]->printCard();
-        }
-        if (isset($_POST['cardId'])) {
-            // $card = 
-            // echo $_POST['cardId'];
-        }
-    ?>
+        <?php
+            $game->printScore();
+            $game->printDeck();
+        ?>
     </article>
     <?php
         // DEBUG
         vdp($_REQUEST, '$_REQUEST');
         vdp($_SESSION, '$_SESSION');
-        vdp($cardDeck, '$cardDeck');
+        // vdp($cardDeck, '$cardDeck');
         vdp($game, '$game');
+        
         $_SESSION['game'] = serialize($game);
     ?>
 </body>
