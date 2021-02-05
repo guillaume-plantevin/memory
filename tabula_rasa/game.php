@@ -6,12 +6,25 @@
     
     Autoloader::register();
     
-    $value = 'ABCDEFGHIJKLMNOPQRST';
+    // $value = 'ABCDEFGHIJKLMNOPQRST';
+    $game = unserialize($_SESSION['game']);
+
+    if (isset($_POST['cardId'])) {
+        if (!$game->pTurnExists()) {
+            $game->setPreviousTurn($_POST['id']);
+        }
+        elseif ($game->pTurnExists()) {
+
+        }
+        if ($game->pTurnExists() && $game->actualTurnExists()) {
+            $game->comparison();
+        }
+    } 
 
     if (isset($_SESSION['difficulty'])) {
         $cardDeck = [];
-        $numberOfCard = intval($_SESSION['difficulty']) * 2;
-        echo 'number of cards = ' . $numberOfCard;
+        $numberOfCard = intval($game->getDifficulty());
+        // echo 'number of cards = ' . $numberOfCard;
         for ($i = 0; $i < $numberOfCard; ++$i) {
             $cardDeck[$i] = new Cards($i, $value[$i]);
         }
@@ -20,10 +33,12 @@
         $cardId = intval($_REQUEST['cardId']);
         $cardDeck[$cardId]->flipCard();
     }
+    // $game = new Memory;
+    // echo $game->getidCard();
 
     // $card = new Cards(0, 'A');
     // prp($cardDeck, '$card');
-    vdp($cardDeck, '$card');
+    // vdp($cardDeck, '$card');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,6 +75,9 @@
         // DEBUG
         vdp($_REQUEST, '$_REQUEST');
         vdp($_SESSION, '$_SESSION');
+        vdp($cardDeck, '$cardDeck');
+        vdp($game, '$game');
+        $_SESSION['game'] = serialize($game);
     ?>
 </body>
 </html>

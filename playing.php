@@ -8,6 +8,7 @@
     // retour de l'objet $game = new Memory()
     $game = unserialize($_SESSION['game']);
 
+    // 
     if (isset($_GET['id']) && !$game->pTurnExists()) {
         $game->setPreviousTurn($_GET['id']);
         // echo 'reçu une première ID: ', $game->showActualId();

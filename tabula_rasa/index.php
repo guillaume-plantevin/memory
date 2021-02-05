@@ -8,11 +8,15 @@
 
     if (isset($_REQUEST['difficulty'])) {
         $_SESSION['difficulty'] = $_REQUEST['difficulty'];
-        // $game = new Memory;
-        // $game->setDifficulty($_GET['difficulty']);
-        // $game->createDeck();
+        $game = new Memory;
+        $game->setDifficulty($_REQUEST['difficulty']);
+        $game->createDeck();
+        $game->shuffleDeck();
         // $_SESSION['shuffledDeck'] = $game->shuffleDeck();
-        // $_SESSION['game'] = serialize($game);
+        $_SESSION['game'] = serialize($game);
+        // vdp($_SESSION);
+        // vdp($game);
+        // die;
 
         header('Location: game.php');
         return;
@@ -35,7 +39,7 @@
                 <li><a href="deconnexion.php">Deconnexion</a></li>
             </ul>
         </header>
-        <form action="" method='get'>
+        <form action="" method='GET'>
             <label for="diff">nombre de paires</label>
             <select name="difficulty" id="diff">
                 <option value="2">2</option>
@@ -43,6 +47,10 @@
                 <option value="4">4</option>
                 <option value="5">5</option>
                 <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
             </select>
             <input type="submit" value="GO">
         </form>
