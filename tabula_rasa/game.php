@@ -5,11 +5,9 @@
     require_once 'classes/Autoloader.php';
     
     Autoloader::register();
-
-    $value = 'ABCDEFGHIJKLMNOPQRST';
-    vdp($_REQUEST, '$_REQUEST');
-    vdp($_SESSION, '$_SESSION');
     
+    $value = 'ABCDEFGHIJKLMNOPQRST';
+
     if (isset($_SESSION['difficulty'])) {
         $cardDeck = [];
         $numberOfCard = intval($_SESSION['difficulty']) * 2;
@@ -17,6 +15,10 @@
         for ($i = 0; $i < $numberOfCard; ++$i) {
             $cardDeck[$i] = new Cards($i, $value[$i]);
         }
+    }
+    if (isset($_REQUEST['cardId'])) {
+        $cardId = intval($_REQUEST['cardId']);
+        $cardDeck[$cardId]->flipCard();
     }
 
     // $card = new Cards(0, 'A');
@@ -34,6 +36,14 @@
     <title>game</title>
 </head>
 <body>
+    <header>
+        <ul>
+            <li><a href="index.php">index</a></li>
+            <li><a href="playing.php">Jeu</a></li>
+            <li><a href="deconnexion.php">Deconnexion</a></li>
+        </ul>
+    </header>
+    <article class="game flex d-flex justify-content-around">
     <?php
         // $card->printCard();
         foreach ($cardDeck as $k => $v) {
@@ -42,9 +52,14 @@
         }
         if (isset($_POST['cardId'])) {
             // $card = 
-            echo $_POST['cardId'];
+            // echo $_POST['cardId'];
         }
     ?>
-    
+    </article>
+    <?php
+        // DEBUG
+        vdp($_REQUEST, '$_REQUEST');
+        vdp($_SESSION, '$_SESSION');
+    ?>
 </body>
 </html>
