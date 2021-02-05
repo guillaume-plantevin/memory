@@ -7,11 +7,32 @@ class Memory extends Cards{
     private $shuffledDeck = [];
     // INT
     private $difficulty;
+    private $totalPairs;
+    private $score;
 
     private $previousTurn;
     private $actualTurn;
-    private $score;
-    private $totalPairs;
+    
+
+    // DEBUG METHOD
+    public function showDifficulty() {
+        return $this->difficulty;
+    }
+    // DEBUG METHOD
+    public function showPreviousID() {
+        return $this->previousTurn;
+    }
+
+    // DEBUG METHOD
+    public function showActualId() {
+        return $this->actualTurn;
+    }
+
+    // DEBUG METHOD
+    public function printReminder() {
+        return '<p>' . 'paires restantes: ' . $this->totalPairs . '</p>' . "\n";
+    }
+
     
     /**
      * défini le nombre de pair utilisé pendant la partie, 
@@ -37,6 +58,7 @@ class Memory extends Cards{
         return $this->deck;
     }
 
+
     /**
      * Mélange les cartes dont le nombre est décidé par le choix de la difficulté
      * @return array, qui est passé en $_SESSION, pour le moment
@@ -47,11 +69,6 @@ class Memory extends Cards{
         return $this->shuffledDeck;
     }
 
-    // DEBUG METHOD
-    public function showDifficulty() {
-        return $this->difficulty;
-    }
-
 
     /**
      * fonction pour afficher les données HTML, 
@@ -60,11 +77,6 @@ class Memory extends Cards{
      * @param int $value
      */
     public function createCard($index) {
-        // echo '<a href="playing.php?id=' . $index . '" class="card">';
-        // echo '<a href="playing.php?id=' . $index . '">';
-        // echo '<div class="card">';
-        // echo '</div>';
-        // echo '</a ><br>';
         echo '<form action="" method="POST">';
         echo '<input type="hidden" name="cardId" value="' . $index . '">';
         echo '<button type="submit" class="card">';
@@ -128,17 +140,6 @@ class Memory extends Cards{
     }
 
 
-    // DEBUG METHOD
-    public function showPreviousID() {
-        return $this->previousTurn;
-    }
-
-
-    // DEBUG METHOD
-    public function showActualId() {
-        return $this->actualTurn;
-    }
-
     /**
      * efface les valeurs pour les deux propriétés: previousTurn & actualTurn
      * 
@@ -147,6 +148,8 @@ class Memory extends Cards{
         unset($this->actualTurn);
         unset($this->previousTurn);
     }
+
+
     /**
      * comparaison entre deux cartes/propriétés, 
      */
@@ -164,22 +167,18 @@ class Memory extends Cards{
         }
         $this->unsetTurns();
     }
+
+
     /**
      * renvoie le score pour avoir un suivi-visuel du score du joueur
      * @return string
      */
     public function printScore() {
         if (!isset($this->score))
-            return '<p>SCORE: 0</p><br>' . "\n";
+            return '<p>SCORE: 0</p>' . "\n";
         else 
             return '<p>' . 'SCORE: ' . $this->score . '</p>' . "\n";
     }
-
-    // DEBUG METHOD
-    public function printReminder() {
-        return '<p>' . 'paires restantes: ' . $this->totalPairs . '</p>' . "\n";
-    }
-
 
     /**
      * arrête la partie lorsque le joueur a découvert toutes les paires

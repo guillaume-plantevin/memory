@@ -18,26 +18,14 @@ class Cards {
         // indispensable?
         $this->side = FALSE;
     }
+    
+
     public function createACard() {
-        echo '<form action="" id="" method="post" style="background:lightblue" class="card">';
+        echo '<form action="" method="POST">';
         echo '<input type="hidden" name="cardId" value="' . $this->id . '">';
-        // echo '<button type="submit" class="card" style="background:' . isset($this->flipped) ? 'pink' : '../img/' . $this->myst . '">';
-        echo '<button class type="submit">';
-        echo '<div>';
-        // echo 'card';
-        echo '</div>';
-        
+        echo '<button type="submit" class="card" style="background: center no-repeat url(img/myst.jpg)">';
         echo '</button>';
-        echo '</form>', '<br>', "\n";;
-    }
-
-
-    public function createCardALink() {
-        echo '<a href="playing.php?id=' . $this->id . '" class="card">';
-        echo '<div>';
-        // echo 'ID';
-        echo '</div>';
-        echo '</a >', '\n';
+        echo '</form>', "\n";
 
     }
     /**

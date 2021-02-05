@@ -1,9 +1,4 @@
 <?php
-    /**
-     * ATTENTION: GROS PROBLEME:
-     * Lorsque l'utilisateur rafraichit la page, les deux tours sont effacés de la prop
-     * de la class Memory!
-     */ 
     require_once 'classes/Autoloader.php';
     session_start();
     require_once 'functions/functions.php';
@@ -50,7 +45,6 @@
                 <li><a href="deconnexion.php">Deconnexion</a></li>
             </ul>
         </header>
-        <!-- PEUT-ETRE CHANGER LES CLASS -->
         <?php 
             echo $game->printScore();
             // DEBUG
@@ -59,7 +53,7 @@
         <article class="game flex d-flex justify-content-around">
         <?php
             if ($game->stopGame())
-                echo 'FINI!';
+                echo 'METTRE UN MESSAGE DE FIN!';
             else 
                 $game->buildDeck($_SESSION['shuffledDeck']);
         ?>
@@ -70,5 +64,7 @@
 <?php 
     // DEBUG
     prp($game, '$game');
+
+    
     $_SESSION['game'] = serialize($game);
 ?>
