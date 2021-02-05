@@ -12,34 +12,27 @@
         <title>restart</title>
         <style>
             .card {
-                display: inline-block;
-                border: 2px solid gray;
-                margin: 2em;
-                width: 10%;
-                height: 200px;
+                /* display: inline-block; */
+                height: 10vh;
+                width: 10vh;
                 background: pink;
+                padding: 0;
             }
         </style>
     </head>
     <body>
-        <div class="card">
-            <form action="" method="POST">
-                <input type="hidden" name="cardId" value="0">
-                <button type="submit">tchi</button>
-            </form>
-        </div>
-        <div class="card">
-            <form action="" method="POST">
-                <input type="hidden" name="cardId" value="1">
-                <button type="submit">tcha</button>
-            </form>
-        </div>
-        <div class="card">
-            <form action="" method="POST">
-                <input type="hidden" name="cardId" value="2">
-                <button type="submit">tcho</button>
-            </form>
-        </div>
+        <form action="" method="POST">
+            <input type="hidden" name="cardId" value="0">
+            <button type="submit" class="card">
+            </button>
+        </form>
+        <form action="" method="POST">
+            <input type="hidden" name="cardId" value="1">
+            <button type="submit"class="card">
+                
+            </button>
+        </form>
+        
 
         <?php vdp($_REQUEST); ?>
     </body>

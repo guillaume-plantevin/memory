@@ -17,6 +17,7 @@ class Memory extends Cards{
      * défini le nombre de pair utilisé pendant la partie, 
      * ainsi que le nombre total de paires pour que le jeu s'arrête.
      * @param int $difficulty
+     * 
      */
     public function setDifficulty(int $difficulty) {
         $this->difficulty = $difficulty;
@@ -26,6 +27,7 @@ class Memory extends Cards{
 
     /**
      * choisis la quantité de carte en rapport avec le niveau de difficulté
+     * @return array les cartes qui seront utilisées, MAIS dans le bon ordre
      */
     public function createDeck(): array {
         $numbCards = $this->difficulty * 2;
@@ -58,10 +60,16 @@ class Memory extends Cards{
      * @param int $value
      */
     public function createCard($index) {
-        echo '<a href="playing.php?id=' . $index . '" class="card">';
-        echo '<div>';
-        echo '</div>';
-        echo '</a ><br>';
+        // echo '<a href="playing.php?id=' . $index . '" class="card">';
+        // echo '<a href="playing.php?id=' . $index . '">';
+        // echo '<div class="card">';
+        // echo '</div>';
+        // echo '</a ><br>';
+        echo '<form action="" method="POST">';
+        echo '<input type="hidden" name="cardId" value="' . $index . '">';
+        echo '<button type="submit" class="card">';
+        echo '</button>';
+        echo '</form>', "\n";
     }
 
     /**
@@ -146,6 +154,7 @@ class Memory extends Cards{
         if ($this->shuffledDeck[$this->previousTurn] ===  $this->shuffledDeck[$this->actualTurn]) {
             // DEBUG
             echo 'MEME VALEUR';
+
             $this->score += 1;
             $this->totalPairs -= 1;
         }
@@ -155,16 +164,27 @@ class Memory extends Cards{
         }
         $this->unsetTurns();
     }
+    /**
+     * renvoie le score pour avoir un suivi-visuel du score du joueur
+     * @return string
+     */
     public function printScore() {
         if (!isset($this->score))
             return '<p>SCORE: 0</p><br>' . "\n";
         else 
             return '<p>' . 'SCORE: ' . $this->score . '</p>' . "\n";
     }
-    // FUNCTION DEBUG
+
+    // DEBUG METHOD
     public function printReminder() {
         return '<p>' . 'paires restantes: ' . $this->totalPairs . '</p>' . "\n";
     }
+
+
+    /**
+     * arrête la partie lorsque le joueur a découvert toutes les paires
+     * @return bool
+     */
     public function stopGame() {
         if ($this->totalPairs == 0)
             return TRUE;

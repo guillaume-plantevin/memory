@@ -53,6 +53,7 @@
         <!-- PEUT-ETRE CHANGER LES CLASS -->
         <?php 
             echo $game->printScore();
+            // DEBUG
             echo $game->printReminder();
         ?>
         <article class="game flex d-flex justify-content-around">

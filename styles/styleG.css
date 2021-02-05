@@ -3,8 +3,10 @@
 
 }
 .card {
-    margin: 2em;
-    border: 2px solid black;
-    width: 150px;
-    height: 200px
+    /* display: inline-block; */
+    height: 20vh;
+    border: 1px solid black;
+    width: 15vh;
+    background: pink;
+    padding: 0;
 }
