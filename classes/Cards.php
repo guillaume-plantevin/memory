@@ -26,7 +26,6 @@ class Cards {
         echo '<button type="submit" class="card" style="background: center no-repeat url(img/myst.jpg)">';
         echo '</button>';
         echo '</form>', "\n";
-
     }
     /**
      * verifie si la propriété de la carte est flipped et si TRUE montre la DEUXIÈME face
