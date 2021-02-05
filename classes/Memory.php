@@ -11,11 +11,16 @@ class Memory extends Cards{
     private $previousTurn;
     private $actualTurn;
     private $score;
+    private $totalPairs;
     
-    // SETTER
+    /**
+     * défini le nombre de pair utilisé pendant la partie, 
+     * ainsi que le nombre total de paires pour que le jeu s'arrête.
+     * @param int $difficulty
+     */
     public function setDifficulty(int $difficulty) {
         $this->difficulty = $difficulty;
-        // echo 'difficulty = ' . $this->difficulty;
+        $this->totalPairs = $difficulty;
     }
 
 
@@ -52,13 +57,11 @@ class Memory extends Cards{
      * @param int $index
      * @param int $value
      */
-    public function createCard($index, $value) {
-        echo '<div class="card">';
-        echo '<a href="playing.php?id=' . $index . '&value=' . $value . '">';
-        echo '<p>id=' . $index . '</p>' ;
-        echo '<p>value=' . $value . '</p>';
-        echo '</a>';
-        echo '</div>', "\n";
+    public function createCard($index) {
+        echo '<a href="playing.php?id=' . $index . '" class="card">';
+        echo '<div>';
+        echo '</div>';
+        echo '</a ><br>';
     }
 
     /**
@@ -68,7 +71,7 @@ class Memory extends Cards{
      */
     public function buildDeck($array) {
         foreach ($array as $k => $v) {
-            $this->createCard($k, $v);
+            $this->createCard($k);
         }
     }
 
@@ -140,14 +143,32 @@ class Memory extends Cards{
      * comparaison entre deux cartes/propriétés, 
      */
     public function comparison() {
-        // echo $this->shuffledDeck[$this->previousTurn], '<br>';
-        // echo $this->shuffledDeck[$this->actualTurn], '<br>';
         if ($this->shuffledDeck[$this->previousTurn] ===  $this->shuffledDeck[$this->actualTurn]) {
+            // DEBUG
             echo 'MEME VALEUR';
+            $this->score += 1;
+            $this->totalPairs -= 1;
         }
         else {
+            // DEBUG
             echo "VALEURS DIFFERENTES";
         }
         $this->unsetTurns();
+    }
+    public function printScore() {
+        if (!isset($this->score))
+            return '<p>SCORE: 0</p><br>' . "\n";
+        else 
+            return '<p>' . 'SCORE: ' . $this->score . '</p>' . "\n";
+    }
+    // FUNCTION DEBUG
+    public function printReminder() {
+        return '<p>' . 'paires restantes: ' . $this->totalPairs . '</p>' . "\n";
+    }
+    public function stopGame() {
+        if ($this->totalPairs == 0)
+            return TRUE;
+        else
+            return FALSE;
     }
 }

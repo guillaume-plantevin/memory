@@ -19,13 +19,26 @@ class Cards {
         $this->side = FALSE;
     }
     public function createACard() {
-        echo '<form action="" id="" method="post">', '<br>', "\n";
+        echo '<form action="" id="" method="post" style="background:lightblue" class="card">';
         echo '<input type="hidden" name="cardId" value="' . $this->id . '">';
         // echo '<button type="submit" class="card" style="background:' . isset($this->flipped) ? 'pink' : '../img/' . $this->myst . '">';
-        echo '<button type="submit" class="card" style="background:url(../img/myst.jpg)">';
-
+        echo '<button class type="submit">';
+        echo '<div>';
+        // echo 'card';
+        echo '</div>';
+        
         echo '</button>';
         echo '</form>', '<br>', "\n";;
+    }
+
+
+    public function createCardALink() {
+        echo '<a href="playing.php?id=' . $this->id . '" class="card">';
+        echo '<div>';
+        // echo 'ID';
+        echo '</div>';
+        echo '</a >', '\n';
+
     }
     /**
      * verifie si la propriété de la carte est flipped et si TRUE montre la DEUXIÈME face

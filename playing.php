@@ -6,22 +6,12 @@
      */ 
     require_once 'classes/Autoloader.php';
     session_start();
-
     require_once 'functions/functions.php';
 
     Autoloader::register();
     
     // retour de l'objet $game = new Memory()
     $game = unserialize($_SESSION['game']);
-
-    // DEBUG
-    prp($game, '$game');
-    // prp($_SESSION, '$_SESSION');
-    
-    // DEBUG
-    // vdp($game, '$game');
-    // vdp($_SESSION['shuffledDeck']);
-    // vdp($game->pTurnExists(), '$game->pTurnExists()');
 
     if (isset($_GET['id']) && !$game->pTurnExists()) {
         $game->setPreviousTurn($_GET['id']);
@@ -32,8 +22,6 @@
     }
     elseif (isset($_GET['id']) && $game->pTurnExists()) {
         $game->setPreviousTurn($_GET['id']);
-        // echo 'previous id: ', $game->showPreviousID(), '<br>';
-        // echo 'actual id: ', $game->showActualId(), '<br>';
         $_SESSION['game'] = serialize($game);
         header("Location: playing.php");
         return;
@@ -46,7 +34,7 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -63,14 +51,23 @@
             </ul>
         </header>
         <!-- PEUT-ETRE CHANGER LES CLASS -->
+        <?php 
+            echo $game->printScore();
+            echo $game->printReminder();
+        ?>
         <article class="game flex d-flex justify-content-around">
         <?php
-            $game->buildDeck($_SESSION['shuffledDeck']);
+            if ($game->stopGame())
+                echo 'FINI!';
+            else 
+                $game->buildDeck($_SESSION['shuffledDeck']);
         ?>
         </article>
     </body>
 </html>
 
 <?php 
+    // DEBUG
+    prp($game, '$game');
     $_SESSION['game'] = serialize($game);
 ?>
