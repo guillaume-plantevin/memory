@@ -31,7 +31,7 @@
     }
     if (isset($_REQUEST['cardId'])) {
         $cardId = intval($_REQUEST['cardId']);
-        $game->flipCard($cardId);
+        $game->flippingCard($cardId);
         // $cardDeck[$cardId]->flipCard();
     }
 ?>
@@ -65,7 +65,7 @@
         vdp($_SESSION, '$_SESSION');
         // vdp($cardDeck, '$cardDeck');
         vdp($game, '$game');
-        
+
         $_SESSION['game'] = serialize($game);
     ?>
 </body>

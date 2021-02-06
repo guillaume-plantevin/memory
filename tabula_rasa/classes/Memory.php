@@ -1,6 +1,6 @@
 <?php
 
-class Memory extends Cards {
+class Memory extends Deck {
     private $value = '00112233445566778899';
     private $deck = [];
     private $shuffledDeck = [];
@@ -123,7 +123,7 @@ class Memory extends Cards {
      * comparaison entre deux cartes/propriétés, 
      */
     public function comparison() {
-        if ($this->shuffledDeck[$this->previousTurn] ===  $this->shuffledDeck[$this->actualTurn]) {
+        if ($this->finalDeck[$this->previousTurn] ===  $this->finalDeck[$this->actualTurn]) {
             // DEBUG
             echo 'MEME VALEUR';
 
@@ -160,7 +160,7 @@ class Memory extends Cards {
             return FALSE;
     }
 
-    public function flipCard($id) {
-        
+    public function flippingCard($id) {
+        // $this->finalDeck[$id]->flipCard($id);
     }
 }

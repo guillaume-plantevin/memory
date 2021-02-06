@@ -8,7 +8,7 @@
         private $side;
 
         // BOOL
-        private $flipped = FALSE;
+        protected $flipped = FALSE;
 
         /**
          * 
