@@ -1,5 +1,5 @@
 <?php
-namespace App\Core;
+namespace App\Classes;
 
 // On "importe" PDO
 use PDO;

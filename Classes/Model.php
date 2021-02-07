@@ -1,7 +1,7 @@
 <?php
-namespace App\Models;
+namespace App\Classes;
 
-use App\Core\Db;
+use App\Classes\Db;
 use PDO;
 
 class Model extends Db

@@ -1,17 +1,11 @@
 <?php
-namespace App\Controller;
+namespace App\Classes;
 
-use App\Models\WalloffameModel;
 
-class WalloffameController extends Controller
+class Walloffame extends Model
 {
-
-
-    public function index()
+    public function getAllScores()
     {
-        $Wall = new WalloffameModel;
-        $scores = $Wall->findAll();
 
-        $this->render('WallOfFame', ['scores' => $scores]);
     }
 }
