@@ -2,7 +2,7 @@
 namespace App\Classes;
 
 
-class Walloffame extends Model
+class Walloffame
 {
     public function getAllScores()
     {
