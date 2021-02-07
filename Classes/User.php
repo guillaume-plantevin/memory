@@ -10,13 +10,14 @@ class User extends Db
 
     public function __construct()
     {
+        parent::__construct();
     }
 
 
 
 
     // =======================================INSCRIPTION============================================================
-    public function register($bdd, $login, $password, $confirm_password)
+    public function register($login, $password, $confirm_password)
     {
         $error = null;
 
@@ -26,14 +27,14 @@ class User extends Db
 
             if ($login_len < 255 || $lenght_password < 255) {
                 if ($password == $confirm_password) {
-                    $count = $bdd->prepare("SELECT COUNT(*) FROM utilisateurs WHERE login = :login");
+                    $count = $this->db->prepare("SELECT COUNT(*) FROM user WHERE login = :login");
                     $count->execute(array(':login' => $login));
                     $num_rows = $count->fetchColumn();
 
                     if (!$num_rows) {
                         $crypted_password = password_hash($password, PASSWORD_BCRYPT);
 
-                        $insert = $bdd->prepare("INSERT INTO utilisateurs(login, password) VALUES(:login, :password)");
+                        $insert = $this->db->prepare("INSERT INTO user(login, password) VALUES(:login, :password)");
                         $insert->execute(array(
                             ':login' => $login,
                             ':password' => $crypted_password,
@@ -60,19 +61,19 @@ class User extends Db
 
 
     // ==================================================================CONNEXION=========================================================
-    public function connexion($bdd, $login, $password)
+    public function connexion($login, $password)
     {
         $error = null;
 
         if (!empty($login) || !empty($password)) {
-            $count = $bdd->prepare("SELECT COUNT(*) FROM utilisateurs WHERE login = :login");
+            $count = $this->db->prepare("SELECT COUNT(*) FROM user WHERE login = :login");
             $count->execute(array(
                 ':login' => $login
             ));
             $num_rows = $count->fetchColumn();
 
             if ($num_rows) {
-                $result = $bdd->prepare("SELECT * FROM utilisateurs WHERE login = :login");
+                $result = $this->db->prepare("SELECT * FROM user WHERE login = :login");
                 $result->execute(array(
                     ':login' => $login,
                 ));
@@ -105,7 +106,7 @@ class User extends Db
 
 
     // ================================================CHANGEMENT PROFIL============================================================
-    public function update($bdd, $login, $password, $confirm_password)
+    public function update($login, $password, $confirm_password)
     {
         $error = null;
 
@@ -121,7 +122,7 @@ class User extends Db
 
                     if ($login !== $_SESSION['login']) { // DIFFERENT LOGIN
 
-                        $count = $bdd->prepare("SELECT * FROM utilisateurs WHERE id = :id");
+                        $count = $this->db->prepare("SELECT * FROM user WHERE id = :id");
                         $count->execute(array(':id' => $_SESSION['id']));
                         $vue = $count->fetch(PDO::FETCH_ASSOC);
 
@@ -130,7 +131,7 @@ class User extends Db
                             if ($_SESSION['id'] == $vue['id']) { // MÊME ID
 
                                 $crypted_password = password_hash($password, PASSWORD_BCRYPT);
-                                $insert = $bdd->prepare("UPDATE utilisateurs SET login = :login, password = :crypted_password WHERE id = :id");
+                                $insert = $this->db->prepare("UPDATE user SET login = :login, password = :crypted_password WHERE id = :id");
                                 $insert->execute(array(
                                     ':login' => $login,
                                     ':crypted_password' => $crypted_password,
@@ -148,7 +149,7 @@ class User extends Db
                             $error = "vue non dedans";
                         }
                     } elseif ($_SESSION['login'] == $login) { //Si le même login
-                        $count = $bdd->prepare("SELECT * FROM utilisateurs WHERE id = :id");
+                        $count = $this->db->prepare("SELECT * FROM user WHERE id = :id");
                         $count->execute(array(':id' => $_SESSION['id']));
                         $vue = $count->fetch(PDO::FETCH_ASSOC);
 
@@ -160,7 +161,7 @@ class User extends Db
                                     $error = "Rien à changé";
                                 } else {
                                     $crypted_password = password_hash($password, PASSWORD_BCRYPT);
-                                    $insert = $bdd->prepare("UPDATE utilisateurs SET login = :login, password = :crypted_password WHERE id = :id");
+                                    $insert = $this->db->prepare("UPDATE user SET login = :login, password = :crypted_password WHERE id = :id");
                                     $insert->execute(array(
                                         ':login' => $login,
                                         ':crypted_password' => $crypted_password,
