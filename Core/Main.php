@@ -43,7 +43,7 @@ class Main{
 
             if (method_exists($controller, $action)) {
                 //Si il reste des param on les passes à la méthode
-                (isset($param[0])) ? $controller->$action($pram) : $controller->$action();
+                (isset($param[0])) ? $controller->$action($param) : $controller->$action();
             }else {
                 echo "La page recherché n'existe pas";
             }

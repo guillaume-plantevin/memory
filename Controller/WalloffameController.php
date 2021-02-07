@@ -1,10 +1,17 @@
 <?php
 namespace App\Controller;
 
+use App\Models\WalloffameModel;
+
 class WalloffameController extends Controller
 {
+
+
     public function index()
     {
-        echo "Salut Bienvenue Sur Le Wall Of Fame";
+        $Wall = new WalloffameModel;
+        $scores = $Wall->findAll(1);
+
+        $this->render('WallOfFame', ['scores' => $scores]);
     }
 }
