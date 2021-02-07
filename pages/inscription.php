@@ -1,9 +1,8 @@
 <?php
 
-require_once('../Autoloader.php');
+require_once('../Classes/Db.php');
 if (isset($_POST['submit'])) {
-    $_SESSION['user'] = new  User;
-    $_SESSION['user']->register($_POST['login_user'], $_POST['password_user'], $_POST['confirmpassword']);
+    $_SESSION['user']->register($bdd,$_POST['login_user'], $_POST['password_user'], $_POST['confirmpassword']);
 }
 ?>
 <!DOCTYPE html>
