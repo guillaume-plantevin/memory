@@ -8,4 +8,5 @@ abstract class Controller{
 
         require_once ROOT . '/view/' .$fichier . '.php';
     }
+
 }

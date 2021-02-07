@@ -10,7 +10,7 @@ class WalloffameController extends Controller
     public function index()
     {
         $Wall = new WalloffameModel;
-        $scores = $Wall->findAll(1);
+        $scores = $Wall->findAll();
 
         $this->render('WallOfFame', ['scores' => $scores]);
     }
