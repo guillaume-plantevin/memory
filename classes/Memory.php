@@ -1,106 +1,72 @@
 <?php
-    require_once '../functions/functions.php';
-class Memory extends Cards{
-    // ARRAYS
-    private $pairs = ['A', 'A', 'B', 'B', 'C', 'C', 'D', 'D', 'E', 'E', 'F', 'F', 'G', 'G'];
-    private $deck = [];
-    private $shuffledDeck = [];
-    // INT
-    private $difficulty;
-    private $totalPairs;
+
+class Memory extends Deck {
+// class Memory {
+    // private $value = '00112233445566778899';
+    // private $deck = [];
+    // private $shuffledDeck = [];
+    public $objectDeck = [];
+
+    public $difficulty;
+    public $totalPairs;
+
+    public $previousTurn;
+    public $actualTurn;
+
     private $score;
 
-    private $previousTurn;
-    private $actualTurn;
-    
-
-    // DEBUG METHOD
-    public function showDifficulty() {
-        return $this->difficulty;
-    }
-    // DEBUG METHOD
-    public function showPreviousID() {
-        return $this->previousTurn;
-    }
-
-    // DEBUG METHOD
-    public function showActualId() {
-        return $this->actualTurn;
-    }
-
-    // DEBUG METHOD
-    public function printReminder() {
-        return '<p>' . 'paires restantes: ' . $this->totalPairs . '</p>' . "\n";
-    }
-
-    
     /**
-     * défini le nombre de pair utilisé pendant la partie, 
-     * ainsi que le nombre total de paires pour que le jeu s'arrête.
-     * @param int $difficulty
      * 
      */
-    public function setDifficulty(int $difficulty) {
-        $this->difficulty = $difficulty;
-        $this->totalPairs = $difficulty;
+    public function __construct(array $deck) {
+        $this->objectDeck = $deck;
+        // $this->difficulty = parent->difficulty;
+        // $this->totalPairs = $this->numberOfPairs;
+        // $this->difficulty = $deck['difficulty'];
+        // $this->totalPairs = $deck['numberOfPairs'];
     }
+
+    public function setDifficulty($int) {
+        $this->difficulty = $this->totalPairs = $int;
+    }
+
+    // public function setCardPlayed($cardId) {
+    //     $id = intval($cardId);
+    //     $this->objectDeck[$id]->flipCard();
+    //     $this->actualTurn = $id;
+    // }
+
 
 
     /**
-     * choisis la quantité de carte en rapport avec le niveau de difficulté
-     * @return array les cartes qui seront utilisées, MAIS dans le bon ordre
+     * construit en html la carte de jeu en vérifiant son état par ses propriétés.
+     * -> Ne peut plus être cliqué une fois retournée
+     * -> est animée au chargement de la page
      */
-    public function createDeck(): array {
-        $numbCards = $this->difficulty * 2;
-        for ($i = 0; $i <= $numbCards - 1; ++$i) {
-            $this->deck[$i] = $this->pairs[$i];
-        }
-        return $this->deck;
-    }
-
-
-    /**
-     * Mélange les cartes dont le nombre est décidé par le choix de la difficulté
-     * @return array, qui est passé en $_SESSION, pour le moment
-     */
-    public function shuffleDeck():array {
-        $this->shuffledDeck = $this->deck;
-        shuffle($this->shuffledDeck);
-        return $this->shuffledDeck;
-    }
-
-
-    /**
-     * fonction pour afficher les données HTML, 
-     * => SUJET À CHANGER PAR LA SUITE
-     * @param int $index
-     * @param int $value
-     */
-    public function createCard($index) {
-        echo '<form action="" method="POST">';
-        echo '<input type="hidden" name="cardId" value="' . $index . '">';
-        echo '<button type="submit" class="card">';
-        echo '</button>';
-        echo '</form>', "\n";
-    }
-
-    /**
-     * à partir du nombre de carte dans le jeu, 
-     * crée les cartes et leur attribut l'id et la valeur dans le jeu de carte mélangé
-     * METHODE POUVANT BLOQUER LA PROGRESSION SI NON-ADAPTÉE
-     */
-    public function buildDeck($array) {
-        foreach ($array as $k => $v) {
-            $this->createCard($k);
+    public function printCard() {
+        foreach($this->objectDeck as $k => $v) {
+            echo '<form action="" method="POST">';
+            echo '<input type="hidden" name="cardId" value="' . $this->objectDeck[$k]->id . '">';
+            // echo '<button type="submit" class="card" ';
+            if ($this->objectDeck[$k]->flipped) {
+                echo '<button type="submit" class="card" style="background:center no-repeat url(img/' . $this->objectDeck[$k]->getValue() . '); background-size:cover" disabled>';
+            }
+            else {
+                echo '<button type="submit" class="card" style="background: center no-repeat url(img/myst.jpg)">';
+            }
+            echo '</button>';
+            echo '</form>', "\n";
         }
     }
 
-
+    
     /**
      * charge le tour actuel en tour précédent lorsque qu'une nouvelle carte est choisie
      * @param int $id, récupéré par $_GET['id'] pour le moment
      */
-    public function setActualTurn($id) {
+    public function setActualTurn($cardId) {
+        $id = intval($cardId);
+        $this->objectDeck[$id]->flipCard();
         $this->actualTurn = $id;
     }
 
@@ -132,13 +98,38 @@ class Memory extends Cards{
      * NOTE: peut-être inutile
      * @return bool
      */
-    public function aTurnExists(): bool {
+    public function actualTurnExists(): bool {
         if (isset($this->actualTurn))
             return TRUE;
         else
             return FALSE;
     }
 
+    /**
+     * comparaison entre deux cartes/propriétés, 
+     */
+    public function comparison() {
+        if ($this->objectDeck[$this->actualTurn]->value === $this->objectDeck[$this->previousTurn]->value) {
+            // DEBUG
+            echo 'MEME VALEUR';
+    
+            $this->score += 10;
+            $this->totalPairs -= 1;
+        }
+        else {
+            // DEBUG
+            echo "VALEURS DIFFERENTES";
+            // sleep(3);
+            $this->objectDeck[$this->actualTurn]->flipped = FALSE;
+            $this->objectDeck[$this->previousTurn]->flipped = FALSE;
+            
+            // $this->objectDeck[$this->previousTurn]->unFlip();
+        }
+        $this->unsetTurns();
+    }
+    // public function unFlip($id) {
+
+    // }
 
     /**
      * efface les valeurs pour les deux propriétés: previousTurn & actualTurn
@@ -151,25 +142,7 @@ class Memory extends Cards{
 
 
     /**
-     * comparaison entre deux cartes/propriétés, 
-     */
-    public function comparison() {
-        if ($this->shuffledDeck[$this->previousTurn] ===  $this->shuffledDeck[$this->actualTurn]) {
-            // DEBUG
-            echo 'MEME VALEUR';
-
-            $this->score += 1;
-            $this->totalPairs -= 1;
-        }
-        else {
-            // DEBUG
-            echo "VALEURS DIFFERENTES";
-        }
-        $this->unsetTurns();
-    }
-
-
-    /**
+     * ON GARDE
      * renvoie le score pour avoir un suivi-visuel du score du joueur
      * @return string
      */
@@ -179,15 +152,23 @@ class Memory extends Cards{
         else 
             return '<p>' . 'SCORE: ' . $this->score . '</p>' . "\n";
     }
+    public function printPairs() {
+        return '<p>PAIRS LEFT: ' . $this->totalPairs . '</p>' . "\n";
+    }
 
     /**
+     * ON GARDE / AMELIORE
      * arrête la partie lorsque le joueur a découvert toutes les paires
      * @return bool
      */
     public function stopGame() {
-        if ($this->totalPairs == 0)
+        if ($this->totalPairs === 0)
             return TRUE;
         else
             return FALSE;
+    }
+
+    public function flippingCard($id) {
+        // $this->finalDeck[$id]->flipCard($id);
     }
 }

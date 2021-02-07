@@ -1,6 +1,6 @@
 <?php
 
-class Memory extends Deck {
+class Memory extends Cards {
     private $value = '00112233445566778899';
     private $deck = [];
     private $shuffledDeck = [];

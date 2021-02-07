@@ -6,22 +6,14 @@
     
     Autoloader::register();
 
-    if (isset($_GET['difficulty'])) {
-        $game = new Memory;
-        $game->setDifficulty($_GET['difficulty']);
-        $game->createDeck();
-        $_SESSION['shuffledDeck'] = $game->shuffleDeck();
-
-        // indispensable????
+    if (isset($_REQUEST['difficulty'])) {
+        $difficulty = $_SESSION['difficulty'] = intval(htmlentities($_REQUEST['difficulty']));
+        $deck = new Deck($difficulty);
+        $game = new Memory($deck->getObjectDeck());
+        $game->setDifficulty($difficulty);
         $_SESSION['game'] = serialize($game);
-        // VARIATION
-        // $_SESSION['game'] = $game;
-
-        // DEBUG
-        // vdp($_SESSION);
-        // vdp($game, '$game: ');
-
-        header('Location: playing.php');
+        unset($_SESSION['difficulty']);
+        header('Location: game.php');
         return;
     }
 ?>
@@ -32,7 +24,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
         <link rel="stylesheet" href="styles/styleG.css">
-        <title>index</title>
+        <title>choix de la difficulté</title>
     </head>
     <body>
         <header>
@@ -42,7 +34,7 @@
                 <li><a href="deconnexion.php">Deconnexion</a></li>
             </ul>
         </header>
-        <form action="" method='get'>
+        <form action="" method='GET'>
             <label for="diff">nombre de paires</label>
             <select name="difficulty" id="diff">
                 <option value="2">2</option>
@@ -50,6 +42,10 @@
                 <option value="4">4</option>
                 <option value="5">5</option>
                 <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
             </select>
             <input type="submit" value="GO">
         </form>
