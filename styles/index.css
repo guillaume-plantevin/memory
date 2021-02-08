@@ -1,0 +1,29 @@
+body{
+    width:100%;
+    height:90vh;
+}
+
+#Menu_1{
+    width: 50vh;
+    height: 70vh;
+    font-size: 30px;
+}
+#Menu_1 a{
+    text-decoration: none;
+    color: black;
+    font-family: Montserrat;
+    font-weight: bold;
+}
+#Menu_1 a:hover{
+    color: rgb(202, 194, 194);
+}
+
+/* IF CONNECTED */
+#Body_Connected{
+    width: 100%;
+    height: 100%;
+}
+#Choose_Dif{
+    width: 100%;
+    height: 70vh;
+}

@@ -136,9 +136,9 @@ class Memory extends Deck {
      */
     public function printScore() {
         if (!isset($this->score))
-            return '<p>SCORE: 0</p>' . "\n";
+            return '<p class="flex j_center a_center" id="Scores">SCORE: 0</p>' . "\n";
         else 
-            return '<p>' . 'SCORE: ' . $this->score . '</p>' . "\n";
+            return '<p class="flex j_center a_center" id="Scores">' . 'SCORE: ' . $this->score . '</p>' . "\n";
     }
     public function printPairs() {
         return '<p>PAIRS LEFT: ' . $this->totalPairs . '</p>' . "\n";

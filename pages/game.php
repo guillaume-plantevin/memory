@@ -1,43 +1,40 @@
 <?php
-session_start();
-
+require_once('../Classes/Db.php');
 require_once '../functions/functions.php';
 require_once '../classes/Autoloader.php';
 spl_autoload_register(['Autoloader', 'autoload']);
 
 
+
+$wall = new Wall_of_Fame;
+
+
 $game = unserialize($_SESSION['game']);
 unset($_SESSION['game']);
 
-// sert à rien
-if ($game->stopGame()) {
-    $_SESSION['game'] = serialize($game);
-    header("Location: game.php");
-    return;
-}
+
 if (isset($_POST['cardId'])) {
-        if ($game->previousTurnExists() && $game->actualTurnExists()) {
-            $game->comparison();
-            // $_SESSION['game'] = serialize($game);
-        }
-        if (!$game->previousTurnExists()) {
-            $game->setPreviousTurn($_POST['cardId']);
-            $_SESSION['game'] = serialize($game);
-            header("Location: game.php");
-            return;
-        }
-        else {
-            $game->setActualTurn($_POST['cardId']);
-            $_SESSION['game'] = serialize($game);
-            header("Location: game.php");
-            return;
-        }
-    }
-    if ($game->previousTurnExists()  && $game->actualTurnExists() && $game->getTotalPairs() === 1) {
+    if ($game->previousTurnExists() && $game->actualTurnExists()) {
         $game->comparison();
-        $_SESSION['game'] = serialize($game);
-        header('Location: success.php');
+        // $_SESSION['game'] = serialize($game);
     }
+    if (!$game->previousTurnExists()) {
+        $game->setPreviousTurn($_POST['cardId']);
+        $_SESSION['game'] = serialize($game);
+        header("Location: game.php");
+        return;
+    } else {
+        $game->setActualTurn($_POST['cardId']);
+        $_SESSION['game'] = serialize($game);
+        header("Location: game.php");
+        return;
+    }
+}
+if ($game->previousTurnExists()  && $game->actualTurnExists() && $game->getTotalPairs() === 1) {
+    $game->comparison();
+    $_SESSION['game'] = serialize($game);
+    header('Location: success.php');
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,34 +50,32 @@ if (isset($_POST['cardId'])) {
 
 <body>
     <header>
-        <ul>
-            <li><a href="../index.php">index</a></li>
-            <li><a href="playing.php">Jeu</a></li>
+        <ul class="flex j_around a_center" id="ul_nav">
+            <li><h1>MEMORY</h1></li>
             <li><a href="deconnexion.php">Deconnexion</a></li>
         </ul>
     </header>
-    <?= $game->printScore(); ?>
-    <!-- DEBUB -->
-    <?= $game->printPairs(); ?>
-    <?= $game->getPreviousTurn(); ?>
-    <?= $game->getActualTurn(); ?>
+    <main class="flex j_around a_center">
 
-    <article class="game flex d-flex justify-content-around">
-        <?php
-        if (!$game->stopGame()) {
-            echo $game->printCard();
-        } else {
-            echo 'YOU WIN!';
-        }
-        ?>
-    </article>
+        <?= $game->printScore(); ?>
+
+        <article class="flex wrap j_center a_center" id="container">
+            <?php
+            if (!$game->stopGame()) {
+                echo $game->printCard();
+            } else {
+                echo 'YOU WIN!';
+            }
+            ?>
+        </article>
+
+        <?php $wall->getAllScores($bdd, $_SESSION['difficulty']);?>
+    </main>
 </body>
 
 </html>
 <?php
-// DEBUG
-vdp($game, '$game');
+
 $_SESSION['game'] = serialize($game);
-// DEBUG
-vdp($_REQUEST, '$_REQUEST');
+
 ?>

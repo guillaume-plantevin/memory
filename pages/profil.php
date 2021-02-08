@@ -9,7 +9,10 @@ if (isset($_SESSION['id'])) {
         $_SESSION['user']->update($_POST['new_login'], $_POST['new_password'], $_POST['confirm_new_password']);
     }
 
-
+    $path_index = '../index.php';
+    $path_profil = 'profil.php';
+    $path_inscription = 'inscription.php';
+    $path_connexion = 'connexion.php';
 
 
 ?>
@@ -21,14 +24,12 @@ if (isset($_SESSION['id'])) {
     <head>
         <meta charset="UTF-8">
         <title>Profil</title>
-        <link rel="stylesheet" href="../CSS/header.css">
-        <link rel="stylesheet" href="../CSS/profil.css">
-        <link rel="stylesheet" href="../CSS/footer.css">
+        <link rel="stylesheet" href="../styles/header.css">
+        <link rel="stylesheet" href="../styles/profil.css">
     </head>
 
     <body>
-
-        <?php include_once('header.php'); ?>
+        <?php include_once'header.php'; ?>
 
         <!-- =======================================MAIN=============================================== -->
         <main class="flex a_center column j_around" id="main_connexion">
@@ -69,6 +70,6 @@ if (isset($_SESSION['id'])) {
     </body>
 
     </html>
-<?php }else {
+<?php } else {
     var_dump($_SESSION['user']);
 } ?>

@@ -2,8 +2,14 @@
 
 require_once('../Classes/Db.php');
 if (isset($_POST['submit'])) {
-    $_SESSION['user']->register($bdd,$_POST['login_user'], $_POST['password_user'], $_POST['confirmpassword']);
+    $_SESSION['user']->register($bdd, $_POST['login_user'], $_POST['password_user'], $_POST['confirmpassword']);
 }
+
+
+$path_index = '../index.php';
+$path_profil= 'profil.php';
+$path_inscription = 'inscription.php';
+$path_connexion = 'connexion.php';
 ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -11,13 +17,12 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="utf-8">
     <title></title>
-    <link rel="stylesheet" href="../CSS/header.css">
-    <link rel="stylesheet" href="../CSS/inscription.css">
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/inscription.css">
 </head>
 
 <body>
-    <?php include_once('header.php'); ?>
-
+    <?php include_once'header.php'; ?>
     <main class="flex column j_around a_center">
         <h1><u>Formulaire d'Inscription</u></h1>
 

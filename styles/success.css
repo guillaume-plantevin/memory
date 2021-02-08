@@ -1,0 +1,15 @@
+#B_Success{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+#Success{
+    width: 100%;
+    height: 95vh;
+    background: url('../img/success.png') no-repeat center center;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+}
