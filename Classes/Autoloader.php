@@ -6,6 +6,6 @@
         }
 
         static function autoload($class_name) {
-            require 'classes/' . $class_name . '.php';
+            require '../classes/' . $class_name . '.php';
         }
     }

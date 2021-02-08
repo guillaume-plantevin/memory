@@ -12,7 +12,7 @@ if (isset($_REQUEST['difficulty'])) {
     $game->setDifficulty($difficulty);
     $_SESSION['game'] = serialize($game);
     unset($_SESSION['difficulty']);
-    header('Location: game.php');
+    header('Location: pages/game.php');
     return;
 }
 ?>

@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-require_once 'functions/functions.php';
-require_once 'classes/Autoloader.php';
+require_once '../functions/functions.php';
+require_once '../classes/Autoloader.php';
 
 Autoloader::register();
 
