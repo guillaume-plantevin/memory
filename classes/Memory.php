@@ -116,7 +116,7 @@ class Memory extends Deck {
 
     /**
      * efface les valeurs pour les deux propriétés: previousTurn & actualTurn
-     * 
+     *
      */
     private function unsetTurns() {
         unset($this->actualTurn);
