@@ -12,11 +12,13 @@ class Memory extends Deck {
 
     public $previousTurn;
     public $actualTurn;
+    public $Turn = 2;
 
     private $score;
 
     /**
-     * 
+     * Récupère un array de cartes
+     * @param array $deck
      */
     public function __construct(array $deck) {
         $this->objectDeck = $deck;
@@ -29,14 +31,6 @@ class Memory extends Deck {
     public function setDifficulty($int) {
         $this->difficulty = $this->totalPairs = $int;
     }
-
-    // public function setCardPlayed($cardId) {
-    //     $id = intval($cardId);
-    //     $this->objectDeck[$id]->flipCard();
-    //     $this->actualTurn = $id;
-    // }
-
-
 
     /**
      * construit en html la carte de jeu en vérifiant son état par ses propriétés.
@@ -75,9 +69,10 @@ class Memory extends Deck {
      * charge le tour actuel en tour précédent lorsque qu'une nouvelle carte est choisie
      * @param int $id, récupéré par $_GET['id'] pour le moment
      */
-    public function setPreviousTurn($id) {
-        $this->previousTurn = $this->actualTurn;
-        $this->actualTurn = $id;
+    public function setPreviousTurn($cardId) {
+        $id = intval($cardId);
+        $this->objectDeck[$id]->flipCard();
+        $this->previousTurn = $id;
     }
 
 
@@ -85,7 +80,7 @@ class Memory extends Deck {
      * méthode pour déterminer s'il y a une valeur dans la propriété previousTurn
      * @return bool
      */
-    public function pTurnExists(): bool {
+    public function previousTurnExists(): bool {
         if (isset($this->previousTurn))
             return TRUE;
         else
@@ -112,7 +107,6 @@ class Memory extends Deck {
         if ($this->objectDeck[$this->actualTurn]->value === $this->objectDeck[$this->previousTurn]->value) {
             // DEBUG
             echo 'MEME VALEUR';
-    
             $this->score += 10;
             $this->totalPairs -= 1;
         }
@@ -170,5 +164,12 @@ class Memory extends Deck {
 
     public function flippingCard($id) {
         // $this->finalDeck[$id]->flipCard($id);
+    }
+    public function getPreviousTurn() {
+        return '<p>PREVIOUS: ' . $this->previousTurn . '</p>' . "\n";
+    }
+    public function getActualTurn() {
+        return '<p>ACTUAL: ' . $this->actualTurn . '</p>' . "\n";
+
     }
 }

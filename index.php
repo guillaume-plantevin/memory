@@ -30,7 +30,7 @@
         <header>
             <ul>
                 <li><a href="index.php">index</a></li>
-                <li><a href="playing.php">Jeu</a></li>
+                <li><a href="game.php">Jeu</a></li>
                 <li><a href="deconnexion.php">Deconnexion</a></li>
             </ul>
         </header>

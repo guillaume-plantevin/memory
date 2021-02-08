@@ -11,22 +11,41 @@
     unset($_SESSION['game']);
 
     if (isset($_POST['cardId'])) {
-        $game->setActualTurn($_POST['cardId']);
-        // sleep(.5);
-        if (!$game->pTurnExists()) {
+        if ($game->previousTurnExists() && $game->actualTurnExists()) {
+            $game->comparison();
+            $_SESSION['game'] = serialize($game);
+            header("Location: game.php");
+            // header('refresh: 1');
+            return;
+        }
+        if (!$game->previousTurnExists()) {
             $game->setPreviousTurn($_POST['cardId']);
-            // $_SESSION['game'] = serialize($game);
-            // header("Location: game.php");
-            // return;
+            $_SESSION['game'] = serialize($game);
+            header("Location: game.php");
+            return;
         }
         else {
-            $game->comparison();
+            $game->setActualTurn($_POST['cardId']);
+            $_SESSION['game'] = serialize($game);
+            header("Location: game.php");
+            return;
+        }
+        // else {
+        //     $game->comparison();
             // $_SESSION['game'] = serialize($game);
             // header("Location: game.php");
             // return;
             // sleep(2);
-        }
+        // }
+        // $game->addTurn();
+        // if ($game->previousTurnExists() && $game->actualTurnExists()) {
+        //     $game->comparison();
+        //     $_SESSION['game'] = serialize($game);
+        //     header("Location: game.php");
+        //     return;
+        // }
     } 
+    
     // $_SESSION['game'] = serialize($game);
 ?>
 <!DOCTYPE html>
@@ -50,6 +69,8 @@
     <?= $game->printScore(); ?>
     <!-- DEBUB -->
     <?= $game->printPairs(); ?>
+    <?= $game->getPreviousTurn(); ?>
+    <?= $game->getActualTurn(); ?>
 
     <article class="game flex d-flex justify-content-around">
         <?php
