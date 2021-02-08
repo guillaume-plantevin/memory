@@ -5,18 +5,20 @@
     require_once 'classes/Autoloader.php';
     
     Autoloader::register();
-    // vdp($_REQUEST, '$_REQUEST');
     
     $game = unserialize($_SESSION['game']);
     unset($_SESSION['game']);
 
+    // sert à rien
+    if ($game->stopGame()) {
+        $_SESSION['game'] = serialize($game);
+        header("Location: game.php");
+        return;
+    }
     if (isset($_POST['cardId'])) {
         if ($game->previousTurnExists() && $game->actualTurnExists()) {
             $game->comparison();
             $_SESSION['game'] = serialize($game);
-            header("Location: game.php");
-            // header('refresh: 1');
-            return;
         }
         if (!$game->previousTurnExists()) {
             $game->setPreviousTurn($_POST['cardId']);
@@ -30,23 +32,7 @@
             header("Location: game.php");
             return;
         }
-        // else {
-        //     $game->comparison();
-            // $_SESSION['game'] = serialize($game);
-            // header("Location: game.php");
-            // return;
-            // sleep(2);
-        // }
-        // $game->addTurn();
-        // if ($game->previousTurnExists() && $game->actualTurnExists()) {
-        //     $game->comparison();
-        //     $_SESSION['game'] = serialize($game);
-        //     header("Location: game.php");
-        //     return;
-        // }
     } 
-    
-    // $_SESSION['game'] = serialize($game);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,14 +66,14 @@
             else {
                 echo 'YOU WIN!';
             }
-            // sleep(2);
-
         ?>
     </article>
 </body>
 </html>
 <?php
+    // DEBUG
     vdp($game, '$game');
     $_SESSION['game'] = serialize($game);
+    // DEBUG
     vdp($_REQUEST, '$_REQUEST');
 ?>
