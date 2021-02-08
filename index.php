@@ -68,11 +68,75 @@ $path_connexion = 'pages/connexion.php';
 <?php else : ?>
 
     <body class="flex column j_center a_center">
-        <h1>Memory</h1>
 
-        <main class="flex column j_center a_center" id="Menu_1">
-            <a href="pages/inscription.php">Inscription</a>
-            <a href="pages/connexion.php">Connexion</a>
+        <main class="">
+            <section class="flex column j_center a_center" id="Menu_1">
+                <a href="pages/inscription.php">Inscription</a>
+                <a href="pages/connexion.php">Connexion</a>
+            </section>
+
+            <div class="flex j_around a_center" id="Memory_flip">
+                <div class="card">
+                    <div class="Plantes_1_card_inner">
+                        <section class="card_front ">
+                        </section>
+                        <article class="card_back flex j_center a_center">
+                            <h1>M</h1>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="Plantes_1_card_inner">
+                        <section class="card_front">
+                        </section>
+                        <section class="card_back flex j_center a_center">
+                            <h1>E</h1>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="Plantes_1_card_inner">
+                        <section class="card_front">
+                        </section>
+                        <section class="card_back flex j_center a_center">
+                            <h1>M</h1>
+                        </section>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="Plantes_1_card_inner">
+                        <section class="card_front">
+                        </section>
+                        <article class="card_back flex j_center a_center">
+                            <h1>O</h1>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="Plantes_1_card_inner">
+                        <section class="card_front">
+                        </section>
+                        <article class="card_back flex j_center a_center">
+                            <h1>R</h1>
+                        </article>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="Plantes_1_card_inner">
+                        <section class="card_front">
+                        </section>
+                        <article class="card_back flex j_center a_center">
+                            <h1>Y</h1>
+                        </article>
+                    </div>
+                </div>
+            </div>
+
         </main>
 
 
