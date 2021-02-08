@@ -3,6 +3,7 @@
 
 class Wall_of_Fame
 {
+
     public function getAllScores($bdd, $difficulty = null)
     {
         echo "<table id='Tableaux'>";
