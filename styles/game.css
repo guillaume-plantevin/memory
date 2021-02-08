@@ -4,9 +4,6 @@
     width: 15vh;
     padding: 0;
 }
-.flip{
-
-}
 
 #mystere{
     height: 20vh;
@@ -25,7 +22,6 @@
 #card0{
     background: url('../img/card0.jpg') no-repeat center center;
     background-size: cover;
-    
 }
 
 #card1{
