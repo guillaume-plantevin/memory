@@ -39,17 +39,16 @@ class Memory extends Deck {
             echo '<input type="hidden" name="cardId" value="' . $this->objectDeck[$k]->id . '">';
             // echo '<button type="submit" class="card" ';
             if ($this->objectDeck[$k]->flipped) {
-                echo '<button type="submit" class="card" style="background:center no-repeat url(img/' . $this->objectDeck[$k]->getValue() . '); background-size:cover" disabled>';
+                echo '<button type="submit" class="card" disabled>';
             }
             else {
-                echo '<button type="submit" class="card" style="background: center no-repeat url(img/myst.jpg)">';
+                echo '<button type="submit" class="card" id="mystere">';
             }
             echo '</button>';
             echo '</form>', "\n";
         }
     }
 
-    
     /**
      * charge le tour actuel en tour précédent lorsque qu'une nouvelle carte est choisie
      * @param int $id, récupéré par $_GET['id'] pour le moment

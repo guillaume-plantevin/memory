@@ -3,7 +3,7 @@ session_start();
 
 require_once 'functions/functions.php';
 require_once 'classes/Autoloader.php';
-Autoloader::register();
+spl_autoload_register(['Autoloader', 'autoload']);
 
 if (isset($_REQUEST['difficulty'])) {
     $difficulty = $_SESSION['difficulty'] = intval(htmlentities($_REQUEST['difficulty']));

@@ -37,13 +37,13 @@
          */
         public function printCard() {
             echo '<form action="" method="POST">';
-            echo '<input type="hidden" name="cardId" value="' . $this->id . '">';
+            echo '<input type="hidden" name="cardId" value="' . $this->id . 'id="mystere">';
             // echo '<button type="submit" class="card" ';
             if ($this->flipped) {
-                echo '<button type="submit" class="card" style="background:center no-repeat url(img/card1.jpg); background-size:cover" disabled>';
+                echo '<button type="submit" class="card" id="mystere" disabled>';
             }
             else {
-                echo '<button type="submit" class="card" style="background: center no-repeat url(img/myst.jpg)">';
+                echo '<button type="submit" class="card" id="mystere">';
             }
             echo '</button>';
             echo '</form>', "\n";

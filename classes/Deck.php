@@ -39,27 +39,18 @@
             // return $this->deck;
         }
 
-        /**
-         * Mélange les cartes dont le nombre est décidé par le choix de la difficulté
-         * @return array, qui est passé en $_SESSION, pour le moment
-         */
         public function shuffleDeck() {
             $this->shuffledDeck = $this->deck;
             shuffle($this->shuffledDeck);
-            // return $this->shuffledDeck;
         }
 
 
-        /**
-         * 
-         */
+
         public function buildObjectDeck() {
             foreach($this->shuffledDeck as $k => $v) {
                 $this->objectDeck[$k] = new Cards($k, $v);
                 $this->objectDeck[$k]->printCard();
-                
             }
-            // vdp($this->objectDeck, '$objectDeck Deck:60');
             return $this->objectDeck;
         }
 
