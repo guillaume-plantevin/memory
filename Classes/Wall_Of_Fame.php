@@ -7,7 +7,7 @@ class Wall_of_Fame
     public function getAllScores($bdd, $difficulty)
     {
         echo "<table id='Scores_Wall'>";
-        if ($difficulty > 7 && $difficulty < 11 )//Difficulté  = Hard
+        if ($difficulty > 8 && $difficulty < 11 )//Difficulté  = Hard
         {
             echo
             "<thead>
@@ -24,7 +24,7 @@ class Wall_of_Fame
                             <td>" . $result[$i]['scores'] . "</td>
                 </tr>";
             }
-        }elseif($difficulty > 2 && $difficulty < 5 )//Difficulté  = easy
+        }elseif($difficulty > 2 && $difficulty < 6 )//Difficulté  = easy
         {
             echo
             "<thead>
@@ -41,7 +41,7 @@ class Wall_of_Fame
                             <td>" . $result[$i]['scores'] . "</td>
                 </tr>";
             }
-        }elseif ($difficulty > 4 && $difficulty < 8 )//Difficulté  = normal
+        }elseif ($difficulty > 5 && $difficulty < 9 )//Difficulté  = normal
         {
             echo
             "<thead>
@@ -80,7 +80,7 @@ class Wall_of_Fame
     }
 
     public function insertscores(){
-        
+
     }
 }
 

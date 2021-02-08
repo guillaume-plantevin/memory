@@ -26,7 +26,6 @@ $path_connexion = 'pages/connexion.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/index.css">
     <link rel="stylesheet" href="styles/header.css">
     <title>Memory</title>
@@ -44,13 +43,13 @@ $path_connexion = 'pages/connexion.php';
             <form action="" method='GET'>
                 <label for="diff">Nombre de Pairs</label>
                 <select name="difficulty" id="diff">
-                    <option value="3">3</option>
+                    <option value="3">3 (easy)</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
-                    <option value="6">6</option>
+                    <option value="6">6 (normal)</option>
                     <option value="7">7</option>
                     <option value="8">8</option>
-                    <option value="9">9</option>
+                    <option value="9">9 (hard)</option>
                     <option value="10">10</option>
                 </select>
                 <input type="submit" value="GO">

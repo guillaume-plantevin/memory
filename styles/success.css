@@ -14,3 +14,27 @@
     margin: 0;
     padding: 0;
 }
+
+#Titre_suc{
+    margin: 0px;
+    padding: 0px;
+    font-size: 50px;
+    font-weight: bold;
+    font-family: Montserrat, sans-serif;
+}
+
+#Success p{
+    margin: 0px;
+    padding: 0px;
+    font-size: 1.5em;
+    font-family: Lobster;
+}
+
+#Success a{
+    text-decoration: none;
+    color: white;
+}
+#Success a:hover {
+    text-decoration: none;
+    color: rgb(216, 203, 203);
+}

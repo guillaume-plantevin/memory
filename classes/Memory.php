@@ -101,21 +101,19 @@ class Memory extends Deck {
      */
     public function comparison() {
         if ($this->objectDeck[$this->actualTurn]->value === $this->objectDeck[$this->previousTurn]->value) {
-            // DEBUG
-            echo 'MEME VALEUR';
-            $this->score += 10;
+            $this->score += 15;
             $this->totalPairs -= 1;
             $this->sameCards = TRUE;
             $this->objectDeck[$this->actualTurn]->disabled = TRUE;
             $this->objectDeck[$this->previousTurn]->disabled = TRUE;
         }
         else {
-            // DEBUG
-            echo "VALEURS DIFFERENTES";
+            $this->score -= 5;
             $this->objectDeck[$this->actualTurn]->flipped = FALSE;
             $this->objectDeck[$this->previousTurn]->flipped = FALSE;
             $this->sameCards = FALSE;
         }
+        $_SESSION['scores'] = $this->score;
         $this->unsetTurns();
     }
 
@@ -137,7 +135,7 @@ class Memory extends Deck {
     public function printScore() {
         if (!isset($this->score))
             return '<p class="flex j_center a_center" id="Scores">SCORE: 0</p>' . "\n";
-        else 
+        else
             return '<p class="flex j_center a_center" id="Scores">' . 'SCORE: ' . $this->score . '</p>' . "\n";
     }
     public function printPairs() {
