@@ -1,0 +1,52 @@
+.game {
+    display: flex;
+
+}
+.card {
+    /* display: inline-block; */
+    height: 20vh;
+    border: 1px solid black;
+    width: 15vh;
+    background: pink;
+    padding: 0;
+
+
+    perspective: 800px;
+    /* Remove this if you don't want the 3D effect */
+}
+.Plantes_1_card {
+    /* background-color: transparent; */
+    width: 100%;
+    height: 850px;
+    border: 1px solid #f1f1f1;
+    perspective: 800px;
+    /* Remove this if you don't want the 3D effect */
+}
+.card_inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+/* Position the front and back side */
+.card_front, .card_back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+  
+.card_front {
+    background: url(../img/myst.jpg);
+    background-size: cover;
+    background-position: center;
+    color: black;
+}
+
+.card_back {
+    background: url(../img/card1.jpg);
+    color: black;
+    transform: rotateY(180deg);
+}

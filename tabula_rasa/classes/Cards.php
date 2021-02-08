@@ -3,11 +3,12 @@
         // INT 
         protected $id;
         // STRING
-        protected $value;
+        private $value;
+        // ???
+        private $side;
 
         // BOOL
         protected $flipped = FALSE;
-        // protected $disabled = FALSE;
 
         /**
          * 
@@ -25,9 +26,6 @@
 
         public function flipCard() {
             $this->flipped = TRUE;
-        }
-        public function getValue() {
-            return $this->value;
         }
 
         /**

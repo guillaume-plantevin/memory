@@ -7,12 +7,17 @@
     Autoloader::register();
 
     if (isset($_REQUEST['difficulty'])) {
-        $difficulty = $_SESSION['difficulty'] = intval(htmlentities($_REQUEST['difficulty']));
-        $deck = new Deck($difficulty);
-        $game = new Memory($deck->getObjectDeck());
-        $game->setDifficulty($difficulty);
+        $_SESSION['difficulty'] = $_REQUEST['difficulty'];
+        $game = new Memory();
+        $game->setDifficulty($_REQUEST['difficulty']);
+        $game->createDeck();
+        $game->shuffleDeck();
+        // $_SESSION['shuffledDeck'] = $game->shuffleDeck();
         $_SESSION['game'] = serialize($game);
-        unset($_SESSION['difficulty']);
+        // vdp($_SESSION);
+        // vdp($game);
+        // die;
+
         header('Location: game.php');
         return;
     }
@@ -30,7 +35,7 @@
         <header>
             <ul>
                 <li><a href="index.php">index</a></li>
-                <li><a href="game.php">Jeu</a></li>
+                <li><a href="playing.php">Jeu</a></li>
                 <li><a href="deconnexion.php">Deconnexion</a></li>
             </ul>
         </header>
