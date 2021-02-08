@@ -11,6 +11,8 @@ class Memory extends Deck {
     public $actualTurn;
 
     private $score;
+    //BOOL
+    private $sameCards;
 
     /**
      * Récupère un array de cartes
@@ -39,7 +41,7 @@ class Memory extends Deck {
             echo '<input type="hidden" name="cardId" value="' . $this->objectDeck[$k]->id . '">';
             // echo '<button type="submit" class="card" ';
             if ($this->objectDeck[$k]->flipped) {
-                echo '<button type="submit" class="card" disabled>';
+                echo '<button type="submit" class="card" id="'. $this->objectDeck[$k]->getValue() .'" disabled>';
             }
             else {
                 echo '<button type="submit" class="card" id="mystere">';
@@ -103,12 +105,16 @@ class Memory extends Deck {
             echo 'MEME VALEUR';
             $this->score += 10;
             $this->totalPairs -= 1;
+            $this->sameCards = TRUE;
+            $this->objectDeck[$this->actualTurn]->disabled = TRUE;
+            $this->objectDeck[$this->previousTurn]->disabled = TRUE;
         }
         else {
             // DEBUG
             echo "VALEURS DIFFERENTES";
             $this->objectDeck[$this->actualTurn]->flipped = FALSE;
             $this->objectDeck[$this->previousTurn]->flipped = FALSE;
+            $this->sameCards = FALSE;
         }
         $this->unsetTurns();
     }

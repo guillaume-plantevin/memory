@@ -7,7 +7,7 @@
 
         // BOOL
         protected $flipped = FALSE;
-        // protected $disabled = FALSE;
+        protected $disabled = FALSE;
 
         /**
          * 

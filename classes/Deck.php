@@ -24,7 +24,6 @@
             return $this->objectDeck;
         }
 
-        
         /**
          * choisis la quantité de carte en rapport avec le niveau de difficulté
          * @return array les cartes qui seront utilisées, MAIS dans le bon ordre
@@ -33,7 +32,7 @@
             $numberOfCards = $this->numberOfPairs * 2;
 
             for ($i = 0; $i <= $numberOfCards - 1; ++$i) {
-                $nameOValue = 'card' . $this->value[$i] . '.jpg';
+                $nameOValue = 'card' . $this->value[$i];
                 $this->deck[$i] = $nameOValue;
             }
             // return $this->deck;
