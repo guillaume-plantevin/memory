@@ -151,6 +151,9 @@ class Memory extends Deck {
             return FALSE;
     }
 
+    public function getTotalPairs() {
+        return $this->totalPairs;
+    }
     // public function flippingCard($id) {
         // $this->finalDeck[$id]->flipCard($id);
     // }

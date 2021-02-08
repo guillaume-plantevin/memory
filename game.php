@@ -32,7 +32,11 @@
             header("Location: game.php");
             return;
         }
-    } 
+    }
+    if ($game->previousTurnExists() && $game->actualTurnExists() && $game->getTotalPairs() === 1) {
+        $game->comparison();
+            $_SESSION['game'] = serialize($game);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
