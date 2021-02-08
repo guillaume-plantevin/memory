@@ -3,7 +3,7 @@
 
     require_once 'functions/functions.php';
     require_once 'classes/Autoloader.php';
-    
+
     Autoloader::register();
     
     $game = unserialize($_SESSION['game']);
@@ -24,13 +24,13 @@
             $game->setPreviousTurn($_POST['cardId']);
             $_SESSION['game'] = serialize($game);
             header("Location: game.php");
-            return;
+            // return;
         }
         else {
             $game->setActualTurn($_POST['cardId']);
             $_SESSION['game'] = serialize($game);
             header("Location: game.php");
-            return;
+            // return;
         }
     }
     if ($game->previousTurnExists() && $game->actualTurnExists() && $game->getTotalPairs() === 1) {
