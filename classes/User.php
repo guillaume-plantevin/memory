@@ -80,7 +80,7 @@ class User
                         $this->id = $donnees['id'];
                         $this->login = $login;
                         $this->password = $donnees['password'];
-                        header('Location: ../pages/profil.php');
+                        header('Location: ../index.php');
                     } else {
                         $error = "Ce n'est pas le bon mot de passe";
                     }

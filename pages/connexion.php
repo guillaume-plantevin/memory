@@ -3,8 +3,13 @@
 require_once('../Classes/Db.php');
 
 if (isset($_POST['submit'])) {
-    $_SESSION['user']->connexion($bdd, $_POST['login_user'],$_POST['password_user']);
+    $_SESSION['user']->connexion($bdd, $_POST['login_user'], $_POST['password_user']);
 }
+
+$path_index = '../index.php';
+$path_profil = 'profil.php';
+$path_inscription = 'inscription.php';
+$path_connexion = 'connexion.php';
 ?>
 
 
@@ -18,14 +23,12 @@ if (isset($_POST['submit'])) {
 <head>
     <meta charset="UTF-8">
     <title>Connexion</title>
-    <link rel="stylesheet" href="../CSS/header.css">
-    <link rel="stylesheet" href="../CSS/connexion.css">
-    <link rel="stylesheet" href="../CSS/footer.css">
+    <link rel="stylesheet" href="../styles/header.css">
+    <link rel="stylesheet" href="../styles/connexion.css">
 </head>
 
 <body>
-
-    <?php include_once('header.php'); ?>
+    <?php include_once 'header.php'; ?>
 
 
     <!-- =======================================MAIN=============================================== -->

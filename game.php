@@ -3,22 +3,22 @@
 
     require_once 'functions/functions.php';
     require_once 'classes/Autoloader.php';
-
+    
     Autoloader::register();
-
+    
     $game = unserialize($_SESSION['game']);
     unset($_SESSION['game']);
 
     // sert à rien
     if ($game->stopGame()) {
         $_SESSION['game'] = serialize($game);
-        header("Location: game.php");
-        return;
+        // header("Location: game.php");
+        // return;
     }
     if (isset($_POST['cardId'])) {
         if ($game->previousTurnExists() && $game->actualTurnExists()) {
             $game->comparison();
-            $_SESSION['game'] = serialize($game);
+            // $_SESSION['game'] = serialize($game);
         }
         if (!$game->previousTurnExists()) {
             $game->setPreviousTurn($_POST['cardId']);
@@ -33,9 +33,10 @@
             return;
         }
     }
-    if ($game->previousTurnExists() && $game->actualTurnExists() && $game->getTotalPairs() === 1) {
+    if ($game->previousTurnExists()  && $game->actualTurnExists() && $game->getTotalPairs() === 1) {
         $game->comparison();
-            $_SESSION['game'] = serialize($game);
+        $_SESSION['game'] = serialize($game);
+        header('Location: success.php');
     }
 ?>
 <!DOCTYPE html>

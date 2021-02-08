@@ -11,6 +11,8 @@ class Memory extends Deck {
     public $actualTurn;
 
     private $score;
+    //BOOL
+    private $sameCards;
 
     /**
      * Récupère un array de cartes
@@ -39,17 +41,16 @@ class Memory extends Deck {
             echo '<input type="hidden" name="cardId" value="' . $this->objectDeck[$k]->id . '">';
             // echo '<button type="submit" class="card" ';
             if ($this->objectDeck[$k]->flipped) {
-                echo '<button type="submit" class="card" style="background:center no-repeat url(img/' . $this->objectDeck[$k]->getValue() . '); background-size:cover" disabled>';
+                echo '<button type="submit" class="card" id="'. $this->objectDeck[$k]->getValue() .'" disabled>';
             }
             else {
-                echo '<button type="submit" class="card" style="background: center no-repeat url(img/myst.jpg)">';
+                echo '<button type="submit" class="card" id="mystere">';
             }
             echo '</button>';
             echo '</form>', "\n";
         }
     }
 
-    
     /**
      * charge le tour actuel en tour précédent lorsque qu'une nouvelle carte est choisie
      * @param int $id, récupéré par $_GET['id'] pour le moment
@@ -104,12 +105,16 @@ class Memory extends Deck {
             echo 'MEME VALEUR';
             $this->score += 10;
             $this->totalPairs -= 1;
+            $this->sameCards = TRUE;
+            $this->objectDeck[$this->actualTurn]->disabled = TRUE;
+            $this->objectDeck[$this->previousTurn]->disabled = TRUE;
         }
         else {
             // DEBUG
             echo "VALEURS DIFFERENTES";
             $this->objectDeck[$this->actualTurn]->flipped = FALSE;
             $this->objectDeck[$this->previousTurn]->flipped = FALSE;
+            $this->sameCards = FALSE;
         }
         $this->unsetTurns();
     }
@@ -131,9 +136,9 @@ class Memory extends Deck {
      */
     public function printScore() {
         if (!isset($this->score))
-            return '<p>SCORE: 0</p>' . "\n";
+            return '<p class="flex j_center a_center" id="Scores">SCORE: 0</p>' . "\n";
         else 
-            return '<p>' . 'SCORE: ' . $this->score . '</p>' . "\n";
+            return '<p class="flex j_center a_center" id="Scores">' . 'SCORE: ' . $this->score . '</p>' . "\n";
     }
     public function printPairs() {
         return '<p>PAIRS LEFT: ' . $this->totalPairs . '</p>' . "\n";
