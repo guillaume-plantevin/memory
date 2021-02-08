@@ -1,18 +1,14 @@
 <?php
 
 class Memory extends Deck {
-// class Memory {
-    // private $value = '00112233445566778899';
-    // private $deck = [];
-    // private $shuffledDeck = [];
     public $objectDeck = [];
 
+    // INT
     public $difficulty;
     public $totalPairs;
 
     public $previousTurn;
     public $actualTurn;
-    public $Turn = 2;
 
     private $score;
 
@@ -22,12 +18,12 @@ class Memory extends Deck {
      */
     public function __construct(array $deck) {
         $this->objectDeck = $deck;
-        // $this->difficulty = parent->difficulty;
-        // $this->totalPairs = $this->numberOfPairs;
-        // $this->difficulty = $deck['difficulty'];
-        // $this->totalPairs = $deck['numberOfPairs'];
     }
 
+    /**
+     * Comme son nom l'indique, set aussi le nombre de pair
+     * @param int $int
+     */
     public function setDifficulty($int) {
         $this->difficulty = $this->totalPairs = $int;
     }
@@ -90,7 +86,6 @@ class Memory extends Deck {
 
     /**
      * méthode pour déterminer s'il y a une valeur dans la propriété actualTurn
-     * NOTE: peut-être inutile
      * @return bool
      */
     public function actualTurnExists(): bool {
@@ -101,7 +96,7 @@ class Memory extends Deck {
     }
 
     /**
-     * comparaison entre deux cartes/propriétés, 
+     * comparaison entre deux cartes/propriétés, met à jour le score, et la propriété flipped des cartes en question
      */
     public function comparison() {
         if ($this->objectDeck[$this->actualTurn]->value === $this->objectDeck[$this->previousTurn]->value) {
@@ -113,17 +108,11 @@ class Memory extends Deck {
         else {
             // DEBUG
             echo "VALEURS DIFFERENTES";
-            // sleep(3);
             $this->objectDeck[$this->actualTurn]->flipped = FALSE;
             $this->objectDeck[$this->previousTurn]->flipped = FALSE;
-            
-            // $this->objectDeck[$this->previousTurn]->unFlip();
         }
         $this->unsetTurns();
     }
-    // public function unFlip($id) {
-
-    // }
 
     /**
      * efface les valeurs pour les deux propriétés: previousTurn & actualTurn
@@ -152,7 +141,7 @@ class Memory extends Deck {
 
     /**
      * ON GARDE / AMELIORE
-     * arrête la partie lorsque le joueur a découvert toutes les paires
+     * arrête la partie lorsque le joueur a découvert toutes les paires, totalPairs === 0
      * @return bool
      */
     public function stopGame() {
@@ -162,14 +151,17 @@ class Memory extends Deck {
             return FALSE;
     }
 
-    public function flippingCard($id) {
+    // public function flippingCard($id) {
         // $this->finalDeck[$id]->flipCard($id);
-    }
+    // }
+
+    // DEBUG
     public function getPreviousTurn() {
         return '<p>PREVIOUS: ' . $this->previousTurn . '</p>' . "\n";
     }
+
+    // DEBUG
     public function getActualTurn() {
         return '<p>ACTUAL: ' . $this->actualTurn . '</p>' . "\n";
-
     }
 }
