@@ -1,4 +1,4 @@
-.game {
+game {
     display: flex;
 
 }
@@ -37,7 +37,6 @@
     height: 100%;
     backface-visibility: hidden;
 }
-  
 .card_front {
     background: url(../img/myst.jpg);
     background-size: cover;
@@ -49,4 +48,4 @@
     background: url(../img/card1.jpg);
     color: black;
     transform: rotateY(180deg);
-}
+} */
