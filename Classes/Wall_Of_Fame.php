@@ -3,11 +3,12 @@
 
 class Wall_of_Fame
 {
+    public $difficulty;
 
     public function getAllScores($bdd, $difficulty)
     {
         echo "<table id='Scores_Wall'>";
-        if ($difficulty > 7 && $difficulty < 11 )//Difficulté  = Hard
+        if ($difficulty > 8 && $difficulty < 11 )//Difficulté  = Hard
         {
             echo
             "<thead>
@@ -16,7 +17,7 @@ class Wall_of_Fame
                 <th>Hard</th>
             </thead>";
             $query = $bdd->query("SELECT hard.id, hard.scores, user.login
-            FROM hard JOIN user WHERE hard.id_user = user.id ");
+            FROM hard JOIN user WHERE hard.id_user = user.id ORDER BY hard.scores LIMIT 10");
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
             for ($i = 0; $i < count($result); $i++) {
                 echo "<tr>
@@ -24,7 +25,7 @@ class Wall_of_Fame
                             <td>" . $result[$i]['scores'] . "</td>
                 </tr>";
             }
-        }elseif($difficulty > 2 && $difficulty < 5 )//Difficulté  = easy
+        }elseif($difficulty > 2 && $difficulty < 6 )//Difficulté  = easy
         {
             echo
             "<thead>
@@ -33,7 +34,7 @@ class Wall_of_Fame
                 <th>Easy</th>
             </thead>";
             $query = $bdd->query("SELECT easy.id, easy.scores, user.login
-            FROM easy JOIN user WHERE easy.id_user = user.id ");
+            FROM easy JOIN user WHERE easy.id_user = user.id ORDER BY easy.scores LIMIT 10");
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
             for ($i = 0; $i < count($result); $i++) {
             echo "<tr>
@@ -41,7 +42,7 @@ class Wall_of_Fame
                             <td>" . $result[$i]['scores'] . "</td>
                 </tr>";
             }
-        }elseif ($difficulty > 4 && $difficulty < 8 )//Difficulté  = normal
+        }elseif ($difficulty > 5 && $difficulty < 9 )//Difficulté  = normal
         {
             echo
             "<thead>
@@ -50,7 +51,7 @@ class Wall_of_Fame
                 <th>Normal</th>
             </thead>";
             $query = $bdd->query("SELECT normal.id, normal.scores, user.login
-            FROM normal JOIN user WHERE normal.id_user = user.id ");
+            FROM normal JOIN user WHERE normal.id_user = user.id ORDER BY normal.scores LIMIT 10");
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
             for ($i = 0; $i < count($result); $i++) {
                 echo "<tr>
@@ -66,7 +67,7 @@ class Wall_of_Fame
                     <th>Perso</th>
                 </thead>";
             $query = $bdd->query("SELECT perso.id, perso.scores, .perso.nb_pairs, user.login
-            FROM perso JOIN user WHERE perso.id_user = user.id ");
+            FROM perso JOIN user WHERE perso.id_user = user.id ORDER BY perso.scores LIMIT 10");
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
             for ($i = 0; $i < count($result); $i++) {
                 echo "<tr>
@@ -77,6 +78,12 @@ class Wall_of_Fame
             }
         }
         echo "</table>";
+        var_dump($difficulty);
     }
+
+    public function insertscores(){
+
+    }
+
 }
 

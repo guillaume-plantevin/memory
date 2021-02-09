@@ -6,7 +6,7 @@ spl_autoload_register(['Autoloader', 'autoload']);
 
 
 
-$wall = new Wall_of_Fame;
+
 
 
 $game = unserialize($_SESSION['game']);

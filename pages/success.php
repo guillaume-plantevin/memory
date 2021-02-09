@@ -12,6 +12,7 @@ $path_connexion = 'connexion.php';
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,10 +21,16 @@ $path_connexion = 'connexion.php';
     <link rel="stylesheet" href="../styles/success.css">
     <title>Succes</title>
 </head>
+
 <body id="B_Success">
     <?php include_once 'header.php'; ?>
 
-    <main id="Success">
+    <main class="flex column a_center"id="Success">
+        <h1 id="Titre_suc"><?= $_SESSION['login'] ?></h1>
+        <p>Vous avez un score de <?= $_SESSION['scores']; ?> au niveau de difficulté <?= $_SESSION['difficulty']; ?></p>
+        <p>Souhaitez vous <a href="../index.php">rejouer</a> ?</p>
+
     </main>
 </body>
+
 </html>
