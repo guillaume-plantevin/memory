@@ -33,6 +33,7 @@ if (isset($_POST['cardId'])) {
 if ($game->previousTurnExists()  && $game->actualTurnExists() && $game->getTotalPairs() === 1) {
     $game->comparison();
     $_SESSION['game'] = serialize($game);
+    $query = $bdd->query("INSERT INTO ")
     header('Location: success.php');
 }
 ?>
