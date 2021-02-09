@@ -1,11 +1,6 @@
 <?php
-
-use App\App;
-
 require_once('../Classes/Db.php');
-
-$wall = new Wall_of_Fame;
-$wall->getAllScores($bdd, $difficulty = 4);
+$wall->getAllScores($bdd, $_GET['d']);
 
 ?>
 <!DOCTYPE html>
@@ -19,7 +14,10 @@ $wall->getAllScores($bdd, $difficulty = 4);
 
 <body>
 </body>
-    <a href="#"> < </a>
+<a href="WallOfFame.php?d=<?= $_SESSION['difficulty'] = 3; ?>"> Mode Easy </a>
 
-    <a href="#"> > </a>
+<a href="WallOfFame.php?d=<?= $_SESSION['difficulty'] = 6 ?>"> Mode Normal </a>
+
+<a href="WallOfFame.php?d=<?= $_SESSION['difficulty'] = 9 ?>"> Mode Hard </a>
+
 </html>

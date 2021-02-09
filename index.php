@@ -19,6 +19,7 @@ $path_index = 'index.php';
 $path_profil = 'pages/profil.php';
 $path_inscription = 'pages/inscription.php';
 $path_connexion = 'pages/connexion.php';
+$path_wall = 'pages/WallOfFame.php?d='. $_SESSION['difficulty'];
 ?>
 <!DOCTYPE html>
 <html lang="en">

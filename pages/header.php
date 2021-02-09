@@ -8,6 +8,7 @@ if (isset($_SESSION['id'])) {
             <ul class="flex j_around a_center">
                 <li> <?php echo "<a href='$path_index'> Acceuil </a>"; ?> </li>
                 <li> <?php echo "<a href='$path_profil'> Profil </a>"; ?> </li>
+                <li> <?php echo "<a href='$path_wall'> Wall Of Fame </a>"; ?> </li>
             </ul>
         </nav>
     </header>

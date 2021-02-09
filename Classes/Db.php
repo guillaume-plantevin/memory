@@ -4,7 +4,7 @@ require_once('User.php');
 require_once('Wall_Of_Fame.php');
 
 $_SESSION['user'] = new User;
-// $_SESSION['wall'] = new Walloffame;
+$wall = new Wall_of_Fame;
 
 $dsn = "mysql:host=localhost;dbname=memory";
 $userDB = 'root';

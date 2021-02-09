@@ -1,5 +1,4 @@
 <?php
-
 require_once('../Classes/Db.php');
 
 if (isset($_POST['submit'])) {

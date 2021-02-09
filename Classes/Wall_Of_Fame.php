@@ -3,6 +3,7 @@
 
 class Wall_of_Fame
 {
+    public $difficulty;
 
     public function getAllScores($bdd, $difficulty)
     {
@@ -77,10 +78,12 @@ class Wall_of_Fame
             }
         }
         echo "</table>";
+        var_dump($difficulty);
     }
 
     public function insertscores(){
 
     }
+
 }
 
