@@ -8,6 +8,7 @@ $path_index = '../index.php';
 $path_profil = 'profil.php';
 $path_inscription = 'inscription.php';
 $path_connexion = 'connexion.php';
+$path_wall = 'WallOfFame.php?d=' . $_SESSION['difficulty'];
 ?>
 
 <!DOCTYPE html>
