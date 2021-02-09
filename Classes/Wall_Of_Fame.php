@@ -78,7 +78,6 @@ class Wall_of_Fame
             }
         }
         echo "</table>";
-        var_dump($difficulty);
     }
 
     public function insertscores(){
