@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : mar. 09 fév. 2021 à 11:43
+-- Généré le : mar. 09 fév. 2021 à 13:38
 -- Version du serveur :  5.7.31
 -- Version de PHP : 7.4.9
 
@@ -34,14 +34,17 @@ CREATE TABLE IF NOT EXISTS `easy` (
   `scores` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id_user` (`id_user`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `easy`
 --
 
 INSERT INTO `easy` (`id`, `id_user`, `scores`) VALUES
-(5, 4, 30);
+(5, 4, 30),
+(6, 8, 35),
+(7, 5, 40),
+(8, 5, 20);
 
 -- --------------------------------------------------------
 
@@ -78,7 +81,14 @@ CREATE TABLE IF NOT EXISTS `normal` (
   `scores` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `normal` (`id_user`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Déchargement des données de la table `normal`
+--
+
+INSERT INTO `normal` (`id`, `id_user`, `scores`) VALUES
+(1, 9, 75);
 
 -- --------------------------------------------------------
 
@@ -115,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `login` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `user`
@@ -125,7 +135,9 @@ INSERT INTO `user` (`id`, `login`, `password`) VALUES
 (4, 'Guillaume', '$2y$10$oBdLaJj8f55yxErzhm2e8.ZUH7gtCQogtFnU7cpi7q8JLcqRlnja6'),
 (5, 'Jeremy', '$2y$10$/WA3KdtHf4eqLQWDwAVm9ucpwmELA2DX8PQMmu3yGuMYsabnHh9km'),
 (6, 'Fabien', '$2y$10$GoF9beyAz6A4fR0r2oxfBuJC46rXLT9ruvz35w/R0TPktJZhQBRnu'),
-(7, 'johndoe', '$2y$10$Ub5m7zgMICGVvI6pW2Q3Gew.T8jercRu2V6LFqRdJ4IV2xLGF8MIW');
+(7, 'johndoe', '$2y$10$Ub5m7zgMICGVvI6pW2Q3Gew.T8jercRu2V6LFqRdJ4IV2xLGF8MIW'),
+(8, 'test', '$2y$10$O1HV4DMSfUvQlI6tDuqnJ.yMWyqFQ/845Is5mhyBRPcneXCBkF1Mm'),
+(9, 'Joris', '$2y$10$IjcVjEMNMZP1cAbCWS1kJOBLmfu2NiRvm7bLvFqL7QOWIlOVNOMUi');
 
 --
 -- Contraintes pour les tables déchargées
