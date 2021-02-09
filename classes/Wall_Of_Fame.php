@@ -17,7 +17,7 @@ class Wall_of_Fame
                 <th>Hard</th>
             </thead>";
             $query = $bdd->query("SELECT hard.id, hard.scores, user.login
-            FROM hard JOIN user WHERE hard.id_user = user.id ORDER BY hard.scores ASC LIMIT 10");
+            FROM hard JOIN user WHERE hard.id_user = user.id ORDER BY hard.scores DESC LIMIT 10");
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
             for ($i = 0; $i < count($result); $i++) {
                 echo "<tr>
@@ -34,7 +34,7 @@ class Wall_of_Fame
                 <th>Easy</th>
             </thead>";
             $query = $bdd->query("SELECT easy.id, easy.scores, user.login
-            FROM easy JOIN user WHERE easy.id_user = user.id ORDER BY easy.scores ASC LIMIT 10");
+            FROM easy JOIN user WHERE easy.id_user = user.id ORDER BY easy.scores DESC LIMIT 10");
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
             for ($i = 0; $i < count($result); $i++) {
             echo "<tr>
