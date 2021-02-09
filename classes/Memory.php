@@ -10,7 +10,7 @@ class Memory extends Deck {
     public $previousTurn;
     public $actualTurn;
 
-    private $score;
+    public $score;
     //BOOL
     private $sameCards;
 
@@ -169,5 +169,39 @@ class Memory extends Deck {
     // DEBUG
     public function getActualTurn() {
         return '<p>ACTUAL: ' . $this->actualTurn . '</p>' . "\n";
+    }
+
+    public function scores($bdd, $id_user, $difficulty)
+    {
+        $scores = $this->score;
+        if ($difficulty > 2 && $difficulty < 6) //Difficulté  = Hard
+        {
+            $insert = $bdd->prepare("INSERT INTO easy(id_user, scores) VALUES(:id_user, :scores)");
+            $insert->execute(array(
+                ':id_user' => $id_user,
+                ':scores' => $scores,
+            ));
+            if ($insert) {
+                header('Locataion: ../pages/success.php');
+            }
+        } elseif ($difficulty > 5 && $difficulty < 9) {
+            $insert = $bdd->prepare("INSERT INTO normal(id_user, scores) VALUES(:id_user, :scores)");
+            $insert->execute(array(
+                ':id_user' => $id_user,
+                ':scores' => $scores,
+            ));
+            if ($insert) {
+                header('Locataion: ../pages/success.php');
+            }
+        } else {
+            $insert = $bdd->prepare("INSERT INTO hard(id_user, scores) VALUES(:id_user, :scores)");
+            $insert->execute(array(
+                ':id_user' => $id_user,
+                ':scores' => $scores,
+            ));
+            if ($insert) {
+                header('Locataion: ../pages/success.php');
+            }
+        }
     }
 }

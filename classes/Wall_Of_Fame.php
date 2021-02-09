@@ -67,7 +67,7 @@ class Wall_of_Fame
                     <th>Perso</th>
                 </thead>";
             $query = $bdd->query("SELECT perso.id, perso.scores, .perso.nb_pairs, user.login
-            FROM perso JOIN user WHERE perso.id_user = user.id ORDER BY perso.scores LIMIT DESC 10");
+            FROM perso JOIN user WHERE perso.id_user = user.id ORDER BY perso.scores DESC LIMIT 10");
             $result = $query->fetchAll(PDO::FETCH_ASSOC);
             for ($i = 0; $i < count($result); $i++) {
                 echo "<tr>

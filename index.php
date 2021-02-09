@@ -19,9 +19,8 @@ $path_index = 'index.php';
 $path_profil = 'pages/profil.php';
 $path_inscription = 'pages/inscription.php';
 $path_connexion = 'pages/connexion.php';
-if (isset($_SESSION['difficulty'])) {
-    $path_wall = 'pages/WallOfFame.php?d=' . $_SESSION['difficulty'];
-}
+$path_wall = 'pages/WallOfFame.php?d=' . $_SESSION['difficulty'] = 3;
+
 
 ?>
 <!DOCTYPE html>
